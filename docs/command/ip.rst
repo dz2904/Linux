@@ -31,15 +31,15 @@ ip 命令是 Linux 下较新的功能强大的网络配置工具，用来显示�
 -f -family 　　　　　　　　 这个选项后面接协议种类，包括：inet、inet6 或者 link，强调使用的协议种类。
 　　　　　　　　　　　　　   如果没有足够的信息告诉ip使用的协议种类，ip就会使用默认值inet或者any。link比较特殊，它表示不涉及任何网络协议。
 
--4                         是 -family inet 的简写。
+-4 -                      是 -family inet 的简写。
 
--6                         是 -family inet6 的简写。
+-6 -                      是 -family inet6 的简写。
 
--0                         是 -family link 的简写。
+-0 -                      是 -family link 的简写。
 
--o,-oneline 　　　　　　　  对每行记录都使用单行输出，回行用字符代替。如果你需要使用 wc、grep 等工具处理 ip 的输出，会用到这个选项。
+-o -oneline 　　　　　　　  对每行记录都使用单行输出，回行用字符代替。如果你需要使用 wc、grep 等工具处理 ip 的输出，会用到这个选项。
 
--r,-resolve 　　　　　　　　 查询域名解析系统，用获得的主机名代替主机 IP 地址。
+-r -resolve 　　　　　　　　查询域名解析系统，用获得的主机名代替主机 IP 地址。
 
 **OBJECT:**  是你要管理或者获取信息的对象。ip 认识的对象包括:
 
