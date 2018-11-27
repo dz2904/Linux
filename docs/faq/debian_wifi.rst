@@ -7,9 +7,11 @@
 
 ::
 
-    Some of your hardware needs non-free firmware files to operate. The firmware can be loaded from removable media, such as a USB stick or floopy.
+    Some of your hardware needs non-free firmware files to operate. 
+    The firmware can be loaded from removable media, such as a USB stick or floopy.
 
-    The missing firmware files are: iwlwifi-5000-5.ucode iwlwifi-5000-4.ucode iwlwifi-5000-3.ucode iwlwifi-5000-2.ucode iwlwifi-5000-1.ucode
+    The missing firmware files are: iwlwifi-5000-5.ucode iwlwifi-5000-4.ucode 
+    iwlwifi-5000-3.ucode iwlwifi-5000-2.ucode iwlwifi-5000-1.ucode
 
     If you have such media available now, insert it, and continue.
 
@@ -91,3 +93,5 @@
 
 进入系统之后如何安装固件？
 **************************************
+
+待添加...
