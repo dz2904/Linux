@@ -94,4 +94,10 @@
 进入系统之后如何安装固件？
 **************************************
 
-待添加...
+如果安装的时候跳过了加载缺失的固件文件，在系统安装完成之后，只需要将固件文件放在 ``/lib/firmware/`` 目录下即可。如果目录不存在，请新建目录 ``makir /lib/firmware/`` 。
+
+参考链接
+************************************
+
+* `Debian GNU/Linux 安装手册 <https://www.debian.org/releases/stable/i386/>`_
+* `Intel wifi 固件下载 <https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi>`_
