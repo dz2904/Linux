@@ -27,14 +27,19 @@ xdg-user-dirs 就是帮助管理用户目录的工具。``xdg-user-dirs-update``
     ~/.config/user-dirs.dirs
     ------------------------------------------
 
-    XDG_DESKTOP_DIR="$HOME/桌面"
-    XDG_DOCUMENTS_DIR="$HOME/文档"
-    XDG_DOWNLOAD_DIR="$HOME/下载"
-    XDG_MUSIC_DIR="$HOME/音乐"
-    XDG_PICTURES_DIR="$HOME/图片"
-    XDG_PUBLICSHARE_DIR="$HOME/公共"
-    XDG_TEMPLATES_DIR="$HOME/模板"
-    XDG_VIDEOS_DIR="$HOME/视频"
+    XDG_DESKTOP_DIR="$HOME/Desktop"
+    XDG_DOCUMENTS_DIR="$HOME/Documents"
+    XDG_DOWNLOAD_DIR="$HOME/Download"
+    XDG_MUSIC_DIR="$HOME/Music"
+    XDG_PICTURES_DIR="$HOME/Pictures"
+    XDG_PUBLICSHARE_DIR="$HOME/Publicshare"
+    XDG_TEMPLATES_DIR="$HOME/Templates"
+    XDG_VIDEOS_DIR="$HOME/Videos"
+
+
+.. note::
+
+    在把中文文件名修改为英文文件名时，不仅仅需要修改配置文件，还需要把中文文件名改成对应的英文文件名。
 
 
 因为 xdg-user-dirs 会参照本地配置文件来了解正确的用户目录，所以可以自定义。若将 ~/.config/user-dirs.dirs 下 XDG_DOWNLOAD_DIR 变量设为了 $HOME/Internet，那么任何参照了该变量的程序都会改用这个目录。
