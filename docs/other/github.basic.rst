@@ -50,7 +50,7 @@ GitHub 设计了一个以合并请求为中心的特殊合作流程。 它基于
     ...
 
     # 将改动提交到分支中
-    $ git commit -a -m 'three seconds is better'××××××××××××××××××××××××××××
+    $ git commit -a -m 'three seconds is better'
     [slow-blink 5ca509d] three seconds is better
     ...
 
