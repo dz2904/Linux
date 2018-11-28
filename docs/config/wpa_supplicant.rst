@@ -65,7 +65,7 @@ WPA 或 WPA2 PSK 加密       iw/iwconfig + wpa_supplicant       ip/dhcpcd/dhcli
 请注意一点，对无线网络的配置是全局性的，而非针对具体的接口。
 
 关于 WPA：
-######################
+**************************
 
 WPA 是 WiFi Protected Access 的缩写，中文含义为“WiFi 网络安全存取”。WPA 是一种基于标准的可互操作的 WLAN 安全性增强解决方案，可大大增强现有以及未来无线局域网络的数据保护和访问控制水平。
 
