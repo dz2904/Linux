@@ -55,7 +55,7 @@ GitHub 设计了一个以合并请求为中心的特殊合作流程。 它基于
     ...
 
     # 将新分支推送到 GitHub 的副本中
-    $ git push origin slow-blink (6)
+    $ git push origin slow-blink
     Username for 'https://github.com': tonychacon
     Password for 'https://tonychacon@github.com':
     Counting objects: 5, done.
