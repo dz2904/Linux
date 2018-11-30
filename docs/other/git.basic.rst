@@ -1,9 +1,7 @@
-常用 Git 命令清单
+常用 Git 命令
 #######################################
 
-我每天使用 Git ，但是很多命令记不住。
-
-一般来说，日常使用只要记住下图的几个命令，就可以了。但是要熟练使用，恐怕要记住60～100个命令。
+一般来说，日常使用 Git 只要记住下图的几个命令，就可以了。但是要使用复杂的功能，恐怕要记住60～100个命令。
 
 .. image:: ../images/git.01.jpg
     :width: 600 px
@@ -54,10 +52,10 @@ Git 自带一个 ``git config`` 的工具来帮助设置控制 Git 外观和行�
     $ git config --global core.editor vim
 
 
-二、Git 仓库
+二、新建/克隆仓库
 *************************************
 
-有两种获得 Git 项目仓库的方法。 第一种是在现有项目或目录下导入文件到 Git 中； 第二种是从一个服务器克隆一个现有的 Git 仓库。
+有两种获得 Git 项目仓库的方法。第一种是在现有项目或目录下导入文件到 Git 中； 第二种是从一个服务器克隆一个现有的 Git 仓库。
 
 ::
 
@@ -75,7 +73,7 @@ Git 自带一个 ``git config`` 的工具来帮助设置控制 Git 外观和行�
     $ git clone [url] [git-name]
 
 
-三、跟踪/忽略文件
+三、添加/删除文件
 *************************************
 
 ::
@@ -99,48 +97,7 @@ Git 自带一个 ``git config`` 的工具来帮助设置控制 Git 外观和行�
     $ git status
 
 
-四、忽略文件
-*************************************
-
-通常软件都会自动生成一些文件，比如日志文件，或者编译过程中产生的临时文件等，这些文件一般无需纳入 Git 的管理。可以在项目的根目录下创建一个名为 ``.gitignore`` 的文件使 Git 忽略指定的文件，``.gitignore`` 的格式规范如下：
-
-+ 所有空行或者以 ``#`` 开头的行都会被 Git 忽略。
-
-+ 可以使用标准的 glob 模式匹配。
-
-+ 匹配模式可以以 ``/`` 开头防止递归。
-
-+ 匹配模式可以以 ``/`` 结尾指定目录。
-
-+ 要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号 ``!`` 取反。
-
-::
-
-    $ cat .gitignore
-
-    # 忽略所有以 .o 或 .a 结尾的文件
-    *.[oa]
-
-    # 忽略所有以波浪符（~）结尾的文件，许多文本编辑软件都用这样的文件名保存副本。
-    *~
-
-    # 跟踪 lib.a 文件, 即使已经忽略了所以的 .a 结尾的文件
-    !lib.a
-
-    # 只忽略当前目录下的 TODO 文件
-    /TODO
-
-    # 忽略 build 目录中的所有文件
-    build/
-
-    # 忽略 doc 目录下的以 .txt 结尾的文件（不递归处理）
-    doc/*.txt
-
-    # 忽略 doc 目录下的所有以 .pdf 结尾的文件（递归处理）
-    doc/**/*.pdf
-
-
-五、代码提交
+四、提交文件到本地仓库
 *************************************
 
 ::
@@ -162,7 +119,117 @@ Git 自带一个 ``git config`` 的工具来帮助设置控制 Git 外观和行�
     $ git log
 
 
-六、查看信息
+五、撤销
+*************************************
+
+.. note::
+
+    Git 有些撤消操作是不可逆的。在使用 Git 的撤销时，可能会因为操作失误而导致之前的工作丢失。
+
+::
+
+    # 恢复暂存区的所有文件到工作区，可指定文件名
+    $ git checkout .
+
+    # 恢复某个commit的指定文件到暂存区和工作区
+    $ git checkout [commit] [file]
+
+    # 回退到上一次提交，可指定哈希值
+    $ git reset --hard [Hash]
+
+    # 重置暂存区，与上一次提交保持一致，但工作区内容不变，可指定哈希值或文件名
+    $ git reset [file]
+
+    # 新建一个commit，用来撤销指定commit
+    # 后者的所有变化都将被前者抵消，并且应用到当前分支
+    $ git revert [commit]
+
+
+六、分支
+*************************************
+
+::
+
+    # 列出所有本地分支
+    $ git branch
+
+    # 列出所有远程分支
+    $ git branch -r
+
+    # 列出所有本地分支和远程分支
+    $ git branch -a
+
+    # 新建分支，停留在当前分支
+    $ git branch [branch-name]
+
+    # 新建分支，并切换到该分支
+    $ git checkout -b [branch]
+
+    # 根据指定提交版本，新建分支
+    $ git branch [branch] [commit]
+
+    # 切换到指定分支，并更新工作区
+    $ git checkout [branch-name]
+
+    # 建立追踪关系，在现有分支与指定的远程分支之间
+    $ git branch --set-upstream [branch] [remote-branch]
+
+    # 合并指定分支到当前分支
+    $ git merge [branch]
+
+    # 选择一个commit，合并进当前分支
+    $ git cherry-pick [commit]
+
+    # 删除分支
+    $ git branch -d [branch-name]
+
+    # 删除远程分支
+    $ git push origin --delete [branch-name]
+    $ git branch -dr [remote/branch]
+
+
+七、远程仓库
+*************************************
+
+远程仓库是指托管在因特网或其他网络中的项目的版本库。你可以有好几个远程仓库，通常有些仓库对你只读，有些则可以读写。与他人协作涉及管理远程仓库以及根据需要推送或拉取数据。
+
+::
+
+    # 拉取远程仓库的变化，并与本地分支合并
+    $ git pull [remote] [branch]
+
+    # 拉取远程仓库的所有变动
+    $ git fetch [remote]
+
+    # 显示所有远程仓库
+    $ git remote -v
+
+    # 显示某个远程仓库的信息
+    $ git remote show [remote]
+
+    # 增加一个新的远程仓库，并命名
+    $ git remote add [shortname] [url]
+
+    # 推送本地指定分支到远程仓库
+    $ git push [remote] [branch]
+
+    # 强行推送当前分支到远程仓库，即使有冲突
+    $ git push [remote] --force
+
+    # 推送所有分支到远程仓库
+    $ git push [remote] --all
+
+    # 重命名远程仓库
+    $ git remote rename [original] [renamed]
+
+    # 删除远程仓库
+    $ git remote rm paul
+
+    # 生成一个可供发布的压缩包
+    $ git archive
+
+
+八、查看信息
 *************************************
 
 ::
@@ -219,117 +286,7 @@ Git 自带一个 ``git config`` 的工具来帮助设置控制 Git 外观和行�
     $ git remote show [remote]
 
 
-七、撤销
-*************************************
-
-.. note::
-
-    Git 有些撤消操作是不可逆的。在使用 Git 的撤销时，可能会因为操作失误而导致之前的工作丢失。
-
-::
-
-    # 恢复暂存区的所有文件到工作区，可指定文件名
-    $ git checkout .
-
-    # 恢复某个commit的指定文件到暂存区和工作区
-    $ git checkout [commit] [file]
-
-    # 回退到上一次提交，可指定哈希值
-    $ git reset --hard [Hash]
-
-    # 重置暂存区，与上一次提交保持一致，但工作区内容不变，可指定哈希值或文件名
-    $ git reset [file]
-
-    # 新建一个commit，用来撤销指定commit
-    # 后者的所有变化都将被前者抵消，并且应用到当前分支
-    $ git revert [commit]
-
-
-八、分支
-*************************************
-
-::
-
-    # 列出所有本地分支
-    $ git branch
-
-    # 列出所有远程分支
-    $ git branch -r
-
-    # 列出所有本地分支和远程分支
-    $ git branch -a
-
-    # 新建分支，停留在当前分支
-    $ git branch [branch-name]
-
-    # 新建分支，并切换到该分支
-    $ git checkout -b [branch]
-
-    # 根据指定提交版本，新建分支
-    $ git branch [branch] [commit]
-
-    # 切换到指定分支，并更新工作区
-    $ git checkout [branch-name]
-
-    # 建立追踪关系，在现有分支与指定的远程分支之间
-    $ git branch --set-upstream [branch] [remote-branch]
-
-    # 合并指定分支到当前分支
-    $ git merge [branch]
-
-    # 选择一个commit，合并进当前分支
-    $ git cherry-pick [commit]
-
-    # 删除分支
-    $ git branch -d [branch-name]
-
-    # 删除远程分支
-    $ git push origin --delete [branch-name]
-    $ git branch -dr [remote/branch]
-
-
-九、远程仓库
-*************************************
-
-远程仓库是指托管在因特网或其他网络中的项目的版本库。你可以有好几个远程仓库，通常有些仓库对你只读，有些则可以读写。与他人协作涉及管理远程仓库以及根据需要推送或拉取数据。
-
-::
-
-    # 拉取远程仓库的变化，并与本地分支合并
-    $ git pull [remote] [branch]
-
-    # 拉取远程仓库的所有变动
-    $ git fetch [remote]
-
-    # 显示所有远程仓库
-    $ git remote -v
-
-    # 显示某个远程仓库的信息
-    $ git remote show [remote]
-
-    # 增加一个新的远程仓库，并命名
-    $ git remote add [shortname] [url]
-
-    # 推送本地指定分支到远程仓库
-    $ git push [remote] [branch]
-
-    # 强行推送当前分支到远程仓库，即使有冲突
-    $ git push [remote] --force
-
-    # 推送所有分支到远程仓库
-    $ git push [remote] --all
-
-    # 重命名远程仓库
-    $ git remote rename [original] [renamed]
-
-    # 删除远程仓库
-    $ git remote rm paul
-
-    # 生成一个可供发布的压缩包
-    $ git archive
-
-
-十、标签
+九、标签
 *************************************
 
 Git 使用两种主要类型的标签：轻量标签（lightweight）与附注标签（annotated）。
@@ -362,7 +319,7 @@ Git 使用两种主要类型的标签：轻量标签（lightweight）与附注�
     $ git checkout -b [branch] [tag]
 
 
-十一、Git 别名
+十、Git 别名
 *************************************
 
 别名可以使 Git 输入命令更简单、容易。Git 并没有命令自动补全的功能，如果不想每次都输入完整的 Git 命令，可以通过 git config 文件来轻松地为每一个命令设置一个别名。
@@ -375,6 +332,46 @@ Git 使用两种主要类型的标签：轻量标签（lightweight）与附注�
     # 设置 git status 的别名为 git st
     $ git config --global alias.st status
 
+
+十一、忽略文件
+*************************************
+
+通常软件都会自动生成一些文件，比如日志文件，或者编译过程中产生的临时文件等，这些文件一般无需纳入 Git 的管理。可以在项目的根目录下创建一个名为 ``.gitignore`` 的文件使 Git 忽略指定的文件，``.gitignore`` 的格式规范如下：
+
++ 所有空行或者以 ``#`` 开头的行都会被 Git 忽略。
+
++ 可以使用标准的 glob 模式匹配。
+
++ 匹配模式可以以 ``/`` 开头防止递归。
+
++ 匹配模式可以以 ``/`` 结尾指定目录。
+
++ 要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号 ``!`` 取反。
+
+::
+
+    $ cat .gitignore
+
+    # 忽略所有以 .o 或 .a 结尾的文件
+    *.[oa]
+
+    # 忽略所有以波浪符（~）结尾的文件，许多文本编辑软件都用这样的文件名保存副本。
+    *~
+
+    # 跟踪 lib.a 文件, 即使已经忽略了所以的 .a 结尾的文件
+    !lib.a
+
+    # 只忽略当前目录下的 TODO 文件
+    /TODO
+
+    # 忽略 build 目录中的所有文件
+    build/
+
+    # 忽略 doc 目录下的以 .txt 结尾的文件（不递归处理）
+    doc/*.txt
+
+    # 忽略 doc 目录下的所有以 .pdf 结尾的文件（递归处理）
+    doc/**/*.pdf
 
 十二、获得帮助
 *************************************
