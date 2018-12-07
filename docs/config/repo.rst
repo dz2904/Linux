@@ -96,3 +96,39 @@ $releasever，发行版的版本，从[main]部分的distroverpkg获取，如果
 $arch，cpu体系，如i686,athlon等
 
 $basearch，cpu的基本体系组，如i686和athlon同属i386，alpha和alphaev6同属alpha。
+
+
+
+CentOS下安装yum
+*******************************************************
+
+在Linux里面依次输入下面的命令：
+
+1. 下载最新的 yum-3.2.28.tar.gz 并解压
+
+::
+
+    wget http://yum.baseurl.org/download/3.2/yum-3.2.28.tar.gz
+
+    tar xvf yum-3.2.28.tar.gz  
+
+2. 进入目录，运行安装
+
+::
+
+    cd yum-3.2.28/  
+    ./yummain.py install yum  
+
+如果结果提示错误： CRITICAL:yum.cli:Config Error: Error accessing file for config file:///etc/
+
+可能是原来是缺少配置文件。在 etc 目录下面新建 yum.conf 文件，然后再次运行 yummain.py install yum，顺利完成安装。
+
+3，最后更新系统。
+
+::
+
+    yum check-update  
+    yum update  
+    yum clean all  
+
+
