@@ -87,7 +87,8 @@ listen=YES （ 如果设置为 YES ， 则 vsftpd 将以独立模式运行，由
 
 #listen_ipv6=YES ( 设定是否支持IPV6)
 
-#pam_service_name=vsftpd （ 设置 PAM 外挂模块提供的认证服务所使用的配置文件名 ，即/etc/pam.d/vsftpd文件，此文件中file=/etc/vsftpd/ftpusers字段，说明了PAM模块能抵挡的帐号内容来自文件/etc/vsftpd/ftpusers中）
+# 将以下 vsftpd 修改为要登录ftp的用户名
+#pam_service_name=vsftpd （ 设置 PAM 外挂模块提供的认证服务所使用的配置文件名 ，即/etc/pam.d/vsftpd文件，此文件中file=/etc/vsftpd/ftpusers字段，说明了PAM 模块能抵挡的帐号内容来自文件/etc/vsftpd/ftpusers中）
 
 #userlist_enable=YES/NO （此选项默认值为NO ,此时ftpusers文件中的用户禁止登录FTP服务器；若此项设为YES，则 user_list文件中的用户允许登录   FTP服务器，而如果同时设置了 userlist_deny=YES ，则user_list文件中的用户将不允许登录FTP服务器，甚至连输入密码提示信息都没有，直接被FTP服务器拒绝）
 
@@ -376,6 +377,13 @@ write_enable=YES
 缺少一个表格
 ------------
 
+可以使用下列命令来打开，关闭，重启ftp服务
+
+::
+
+    sudo /etc/init.d/vsftpd start
+    sudo /etc/init.d/vsftpd stop
+    sudo /etc/init.d/vsftpd restart
 
 FTP 数字代码的意义
 
