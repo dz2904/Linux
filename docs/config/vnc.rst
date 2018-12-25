@@ -31,7 +31,7 @@ VNC Server 的配置文件为 /etc/sysconfig/vncservers，在文件末尾添加�
     # 桌面分辨率为 800*600，阻止图形桌面通过 TCP 端口，不能通过 WEB 访问 vncserver，不能通过不安全的方式从远程登录。
     VNCSERVERARGS[2]="-geometry 800x600 -nolisten tcp -nohttpd -localhost"
 
- 关于参数配置说明：
+关于参数配置说明：
 
 1. -geometry 表示桌面分辨率，默认为 1024x768
 
