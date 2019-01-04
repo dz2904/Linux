@@ -98,7 +98,7 @@
 
 .. note::
 
-    ``/lib/firmware/`` 目录不存在也可能是没有安装 firmware。请安装 ``apt-get install firmware-*``。再将固件文件放在 ``/lib/firmware/`` 目录下即可。
+    /lib/firmware/ 目录不存在也可能是没有安装 firmware。请安装 ``apt-get install firmware-*``。再将固件文件放在 /lib/firmware/ 目录下即可。
 
 参考链接
 ************************************
