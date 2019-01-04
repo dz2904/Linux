@@ -104,4 +104,6 @@
 ************************************
 
 * `Debian GNU/Linux 安装手册 <https://www.debian.org/releases/stable/i386/>`_
-* `Intel wifi 固件下载 <https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi>`_
+* `Intel wifi 固件下载 1 <https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi>`_
+* `Intel wifi 固件下载 2 <https://github.com/OpenELEC/iwlwifi-firmware/tree/master/firmware>`_
+
