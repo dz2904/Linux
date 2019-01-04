@@ -13,8 +13,8 @@ Debian
 ::
 
     mount -t iso9660 -o loop /mnt/debian-x.x.x-amd64-DVD-1.iso /media/cdrom/
+    注意：挂载到的目录，和步骤 3 必须使用同一个目录。
 
-注意：挂载到的目录，和步骤 3 使用的是同一个目录。
 
 2. 备份 /etc/apt/sources.list，并清空（注释）文件内容。
 
