@@ -203,4 +203,4 @@ ip 支持两种类型的参数：flag 和 parameter。flag 由一个关键词组
 
     [root@localhost xinetd.d]# ip addr
 
- 更多实例：http://linux.51yip.com/search/ip
+
