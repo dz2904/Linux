@@ -6,6 +6,8 @@
 Debian
 ****************************
 
+以下操作需要 root权限。
+
 1. 挂载 iso 文件:
 
 .. highlight:: none
@@ -13,7 +15,7 @@ Debian
 ::
 
     mount -t iso9660 -o loop /mnt/debian-x.x.x-amd64-DVD-1.iso /media/cdrom/
-    注意：挂载到的目录，和步骤 3 必须使用同一个目录。
+    注意：挂载到的目录，和步骤 3 使用的是同一个目录。
 
 
 2. 备份 /etc/apt/sources.list，并清空（注释）文件内容。
@@ -30,7 +32,49 @@ Debian
 
     apt-get update
 
-Centos
+Centos（待测试）
 ****************************
 
-待更新
+操作系统：CentOS 5.5 ，需要 root 权限。
+
+1. 挂载 iso 文件到挂载点：
+
+::
+
+    mount  -o loop /mnt/iso/CentOS5.iso /mnt/cdrom
+
+2. 备份并修改 yum 的配置文件：
+
+::
+
+    # 备份文件
+    cd /etc/yum.repos.d/
+    cp CentOS-Media.repo CentOS-Media.repo.bak
+
+    # 修改文件
+    vi CentOS-Media.repo
+
+    [c5-media]
+
+    name=CentOS-$releasever - Media
+
+    baseurl=file:///mnt/    # 表明 yum 源在 /mnt 目录下，其它的源注释掉
+
+    # baseurl=file:///media/CentOS/
+
+    # file:///media/cdrom/
+
+    # file:///media/cdrecorder/
+
+    gpgcheck=1
+
+    enabled=1               # 启用 yum
+
+    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+
+3. 清除缓存
+
+::
+
+    yum clean all
+    yum list
