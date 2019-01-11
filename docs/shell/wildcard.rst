@@ -56,7 +56,7 @@ CR        由 <enter> 产生
 $         作变量或运算替换（不要与 shell prompt 搞混了）
 >         输出重定向 stdout。 *
 <         输入重定向 stdin。 *
-|         命令管道。 *
+\|         命令管道。 *
 &         重导向 file descriptor，或将命令置于背境执行。 *
 ( )       将其内的命令置于 nested subshell 执行，或用于运算或命令替换。 *
 { }       将其内的命令置于 non-named function 中执行，或用在变量替换的界定范围。
