@@ -80,40 +80,48 @@ Unit 配置文件的完整字段清单，请参考官方文档。
 添加开机自动启动服务，系统会自动增加由 /lib/systemd/system/ 到 /etc/systemd/system/multi-user.target.wants/ 下的软链接。
 
 ::
+
     systemctl enable httpd.service
 
 移除开机自动启动服务，删除 /etc/systemd/system/multi-user.target.wants 下的软链接。
 
 ::
+
     systemctl disable httpd.service
 
 查看开机是否启动
 
 ::
+
     systemctl status httpd.service （服务详细信息）
     systemctl is-active httpd.service （仅显示是否 Active)
 
 查看开机自启动的程序
 
 ::
+
     ls /etc/systemd/system/multi-user.target.wants/
 
 列出所有已启动的服务
 
 ::
+
     systemctl list-units --type=service
 
 列出启动失败的单元
 
 ::
+
     systemctl --failed
 
 查看 systemd 单元加载及活动情况
 
 ::
+
     systemctl
 
 查看 systemd 管理的所有单元
 
 ::
+
     systemctl list-unit-files
