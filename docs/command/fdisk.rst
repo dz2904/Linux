@@ -18,7 +18,7 @@ fdisk 的意思是固定磁盘 Fixed Disk 或格式化磁盘 Format Disk，它�
 
 fdisk 允许我们在每块硬盘上创建最多四个主分区。它们中的其中一个可以作为扩展分区，并下设多个逻辑分区。1-4 扇区作为主分区被保留，逻辑分区从扇区 5 开始。
 
-.. image:: ../images/fidsk.01.jpeg
+.. image:: ../images/fdisk.01.jpeg
 
 在 fdisk 中敲击 m，便会列出所有的可用操作，：
 
