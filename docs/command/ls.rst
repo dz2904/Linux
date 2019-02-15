@@ -1,7 +1,7 @@
 ls 显示目录内容
 ##########################
 
-ls 命令用来显示目标列表，在 Linux 中是使用率较高的命令。
+ls 命令（list）用来显示目标列表，在 Linux 中是使用率较高的命令。
 
 根据 Eric Fischer 在 Linux 文档项目中关于 ls 命令的文章，该命令的起源可以追溯到 1961 年 MIT 的相容分时系统上的 listf 命令。根据维基百科，ls 出现在 AT&T Unix 的原始版本中。我们今天在 Linux 系统上使用的 ls 命令来自 GNU Core Utilities。
 
