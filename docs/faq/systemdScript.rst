@@ -14,7 +14,7 @@ systemd 的配置文件在 /etc/systemd/system/ 下，并且以 ``.service`` 结
 
 ::
 
-    [Uint]
+    [Unit]
     Description=Customize the  script
     After=network.target sshd-keygen.service
 
