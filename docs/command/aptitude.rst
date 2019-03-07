@@ -67,4 +67,4 @@ u              升级
 ::
 
     # 安装 samba 服务
-    [root@localhost ~]# aptitude installsamba
+    [root@localhost ~]# aptitude install samba
