@@ -175,13 +175,13 @@ CTRL-z 的用途就是将当前进程挂起（Suspend），然后我们就可以
 此时 bash 是 screen 的子进程，而 screen 是 init（PID为1）的子进程。那么当 ssh 断开连接时，HUP 信号自然不会影响到 screen 下面的子进程了。
 
 
-脚本：disown,&和nohup的区别
-*****************************
+disown, & 和 nohup 的区别
+==============================
 
 总结来说：
 
-&： 将进程置于后台，使Shell不用等待它的结束而继续接受用户输入(stdin)。
+&: 将进程置于后台，使 Shell 不用等待它的结束而继续接受用户输入(stdin)。
 
-disown: 将进程从jobs列表中移除, 但依然与Shell有连接
+disown: 将进程从 jobs 列表中移除, 但依然与 Shell 有连接
 
-nohup: 将进程与父Shell完全脱离，且子进程不会接受NOHUP信号，并不能用fg或者jobs命令找到它。
+nohup: 将进程与父 Shell 完全脱离，且子进程不会接受 NOHUP 信号，并不能用 fg 或者 jobs 命令找到它。
