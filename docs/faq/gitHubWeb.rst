@@ -7,7 +7,7 @@
 
    .. note::
    
-     资源库名为 username.github.io（username 为资源库名）。
+     资源库名为 name.github.io（name 为资源库名）。
 
 2. 将你的网页文件上传到资源库。
 
@@ -15,7 +15,7 @@
    
      确保资源库中有一个 index.html 首页文件。
 
-3. 访问 username.github.io 来查看网站（用户名为 gavin，请访问 gavin.github.io）。
+3. 访问 name.github.io 来查看网站（资源库名为 gavin，请访问 gavin.github.io）。
 
    .. note::
    
