@@ -7,7 +7,7 @@
 
    .. note::
    
-     资源库名为 username.github.io（username 必须为用户名）。
+     资源库名为 username.github.io（username 为资源库名）。
 
 2. 将你的网页文件上传到资源库。
 
