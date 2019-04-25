@@ -5,6 +5,17 @@
 
 选择一款带有容易分辨数字和标点的字体在美学上是令人愉悦的，但它是否拥有满足你需求的版权许可也是非常重要的。
 
+大招还是先放吧，好东西实在是留不到最后了：`在线预览编程字体`_ 。
+
+.. _`在线预览编程字体`: https://app.programmingfonts.org
+
+* 左侧选字体，调整字体大小、行距；
+* 右侧实时预览，并且可敲代码测试；
+
+网站的字体都是免费的，但不一定开源。字体可以直接从 GitHub 主页 `programmingfonts/fonts/resources/`_ 下载，每个文件夹下都会有字体的版权许可说明。
+
+.. _`programmingfonts/fonts/resources/`: https://github.com/braver/programmingfonts/tree/gh-pages/fonts/resources
+
 Firacode 字体
 *******************************
 
@@ -58,15 +69,3 @@ Noto Mono 是 Google 打造的庞大 Note 字体族中的等宽版本。尽管�
 *******************************
 
 无论你选择那个字体，你都有可能在每天中花费数小时面对它，所以请确保它在审美和哲学层面上与你产生共鸣。选择正确的开源字体是确保你拥有最佳生产环境的一个重要部分。
-
-图片字体样式
-===============================
-
-字体大小：36px，字间距：100%。
-
-::
-
-    ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    abcdefghijklmnopqrstuvwxyz
-    0123456789
-    <>!@#$%^&*(){}[],.|\/?~=-+
