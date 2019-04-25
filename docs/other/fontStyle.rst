@@ -65,6 +65,16 @@ Noto Mono 是 Google 打造的庞大 Note 字体族中的等宽版本。尽管�
 
 官网链接天朝访问不了，就不放了 ^_^!。
 
+CamingoCode 字体
+*******************************
+
+.. image:: ../images/fontStyle.07.png
+
+CamingoCode 是为源代码编辑器设计的免费字体。它基于 CamingoMono，但是有几个特别绘制的符号在小尺寸下工作得很好，包括 Q、l、&、*、~ 和 #。笔画权重相对较轻，这使得 CamingoCode 既适合明亮的视觉主题，也适合黑暗的视觉主题。该系列由四种样式链接字体（ Regular、Italic、Bold Italic、Bold ）组成。
+
+
+了解更多请查看：https://www.janfromm.de/typefaces/camingomono/camingocode/
+
 选择合适的字体
 *******************************
 
