@@ -8,7 +8,7 @@ PS（Prompt Sign）是指命令提示符，在 Linux 环境下 $PS1 是终端提
 ::
 
     gavin@gavin-ubuntu:~$ echo $PS1
-    \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
+    \[\e]0;\u@\h:\w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
     gavin@gavin-ubuntu:~$
 
 **PS1 变量中各项提示符的含义：**
@@ -72,7 +72,7 @@ PS（Prompt Sign）是指命令提示符，在 Linux 环境下 $PS1 是终端提
     [gavin@gavin-ubuntu ~/Documents 21:17 #6]$ PS1='\u@\W\$ '
 
     # 个人默认的修改，带颜色版本
-    PS1='\[\033[01;32m\]\u@\[\033[01;34m\]\W\[\033[00m\]\$ '
+    PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 
     # 个人默认的修改，不带颜色
     PS1='\u@\W\$ '
