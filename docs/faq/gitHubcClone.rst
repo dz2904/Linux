@@ -33,6 +33,9 @@ GitHub 是一个面向开源及私有软件项目的托管平台，因为只支�
     Password for 'https://tonychacon@github.com':
     Counting objects: 5, done.
     ...
+    
+    # 上传所有标签
+    git push origin --tags
 
 
 最后到 GitHub 上查看分支并创建合并请求。
