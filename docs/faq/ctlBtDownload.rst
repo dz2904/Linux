@@ -3,23 +3,11 @@
 
 第一步：安装 transmission-daemon 版本，这样才能够让 transmission 进程在后台执行。
 
+.. highlight:: none
+
 ::
 
     root@raspberrypi:~# aptitude install transmission-daemon
-    Reading package lists... Done
-    Building dependency tree
-    Reading state information... Done
-    The following additional packages will be installed:
-      libminiupnpc10 libnatpmp1 minissdpd transmission-cli transmission-common
-    Suggested packages:
-      natpmp-utils transmission-gtk
-    The following NEW packages will be installed:
-      libminiupnpc10 libnatpmp1 minissdpd transmission-cli transmission-common transmission-daemon
-    0 upgraded, 6 newly installed, 0 to remove and 0 not upgraded.
-    Need to get 799 kB of archives.
-    After this operation, 3,516 kB of additional disk space will be used.
-    Do you want to continue? [Y/n] y
-    ...
 
 第二步：修改配置文件
 
@@ -104,7 +92,8 @@
     If you're editing settings.json, see the 'rpc-whitelist' and 'rpc-whitelist-enabled' entries.
     If you're still using ACLs, use a whitelist instead. See the transmission-daemon manpage for details.
 
-    根据官方文档的说明，需要将访问者 ip 加入白名单，ip 支持通配符 ``*`` ，如："rpc-whitelist": "127.0.0.1, 192.168.0.*"
+    根据官方文档的说明，需要将访问者 ip 加入白名单，ip 支持通配符 ``*``
+    如："rpc-whitelist": "127.0.0.1, 192.168.0.*"
 
 成功连接后会提示输入用户名密码，分别是配置文件中 ``rpc-username`` 和 ``rpc-password`` 字段的值。
 
