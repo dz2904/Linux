@@ -47,17 +47,19 @@
 
 正确::
 
-    在 LeanCloud 上，数据存储是围绕 `AVObject` 进行的。
+    在 LeanCloud 上，数据存储是围绕 AVObject 进行的。
 
 错误::
 
-    在LeanCloud上，数据存储是围绕`AVObject`进行的。
+    在LeanCloud上，数据存储是围绕AVObject进行的。
 
-    在 LeanCloud上，数据存储是围绕`AVObject` 进行的。
+    在 LeanCloud上，数据存储是围绕AVObject 进行的。
 
 完整的正确用法::
 
-    在 LeanCloud 上，数据存储是围绕 `AVObject` 进行的。每个 `AVObject` 都包含了与 JSON 兼容的 key-value 对应的数据。数据是 schema-free 的，你不需要在每个 `AVObject` 上提前指定存在哪些键，只要直接设定对应的 key-value 即可。
+    在 LeanCloud 上，数据存储是围绕 AVObject 进行的。
+    
+    每个 AVObject 都包含了与 JSON 兼容的 key-value 对应的数据。
 
 例外::
 
