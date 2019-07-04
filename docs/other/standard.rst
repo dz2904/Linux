@@ -242,7 +242,7 @@ Microsoft 有个 `-ms-text-autospace`_ 的 CSS 属性可以实现自动为中英
 
 .. note::
 
-    当网页中需要配合整体视觉风格而出现全部大写 / 小写的情形，HTML 中请使用标准的大小写规范进行书写；并通过 `text-transform: uppercase;`/`text-transform: lowercase;` 对表现形式进行定义。
+    当网页中需要配合整体视觉风格而出现全部大写 / 小写的情形，HTML 中请使用标准的大小写规范进行书写；并通过 ``text-transform: uppercase;`` / ``text-transform: lowercase;`` 对表现形式进行定义。
 
 不要使用不地道的缩写
 =============================
