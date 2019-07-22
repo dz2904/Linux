@@ -3,7 +3,7 @@ SHH 服务
 
 SSH 为 Secure Shell 的缩写，简单地说，SSH 是建立在应用层基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。
 
-Openssh 是这种协议的开源实现或实体，OpenSSh 分为客户端 openssh-client 与服务端 openssh-server。如果是服务器环境只需要安装服务端即可，安装完成默认启动。
+Openssh 是这种协议的开源实现或实体，OpenSSh 分为客户端 openssh-client 与服务端 openssh-server。在很多 Linux 发行版中，客户端是默认安装的，所以只需要安装服务端，安装完成后默认启动。
 
 .. highlight:: none
 
