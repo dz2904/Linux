@@ -3,7 +3,7 @@ ls 显示目录内容
 
 ls 命令（list）用来显示目标列表，在 Linux 中是使用率较高的命令。
 
-根据 Eric Fischer 在 Linux 文档项目中关于 ls 命令的文章，该命令的起源可以追溯到 1961 年 MIT 的相容分时系统上的 listf 命令。根据维基百科，ls 出现在 AT&T Unix 的原始版本中。我们今天在 Linux 系统上使用的 ls 命令来自 GNU Core Utilities。
+根据 Eric Fischer 在 Linux 文档项目中关于 ls 命令的文章，该命令的起源可以追溯到 1961 年 MIT 的相容分时系统上的 listf 命令。根据维基百科，ls 出现在 AT&T Unix 的原始版本中。我们今天在 Linux 系统上使用的 ls 命令来自 GNU Core Utilities。还有一种是 BSD 版本，安装在部分 BSD 或 MacOS 操作系统。
 
 命令格式：
 ***********************
@@ -54,14 +54,15 @@ ls 命令（list）用来显示目标列表，在 Linux 中是使用率较高的
       递归处理，将指定目录下的所有文件及子目录一并处理
 
     -t
-      用文件和目录的更改时间排序
+      根据文件和目录的更改时间进行排序输出（最新的文件先列出）
 
 使用实例：
 ***********************
 
+1. 显示长格式列表
+
 ::
 
-    # 显示长格式列表
     [root@localhost /]# ls -l
     total 20
     lrwxrwxrwx.   1 root root    7 Mar 27  2018 bin -> usr/bin
@@ -69,13 +70,29 @@ ls 命令（list）用来显示目标列表，在 Linux 中是使用率较高的
     ...
     drwxr-xr-x.  20 root root  278 Feb 12 18:17 var
 
+2. 将文件大小转换为更加人性化的表示方法（默认的以字节为单位）
 
-    # 显示所有的文件，包括隐藏文件
+::
+
+    [root@Document /]# ls -h
+    -rwxrwx---. 1 seth users    455 Mar  2  2017 estimate.sh
+    -rwxrwxr-x. 1 seth seth     662 Apr 29 22:27 factorial
+    -rwxrwx---. 1 seth users    20M Jun 29  2018 fop-2.3-bin.tar.gz
+    -rwxrwxr-x. 1 seth seth    6.1K May 22 10:22 geteltorito
+    -rwxrwx---. 1 seth users    177 Nov 12  2018 html4mutt.sh
+
+3. 显示所有的文件，包括隐藏文件
+
+::
+
     [root@localhost ~]# ls -a
     .   .bash_history  .bash_profile  .cshrc          .pki
     ..  .bash_logout   .bashrc        .mysql_history  .tcshrc
 
-    # 显示长格式列表并且显示文件的索引节点号
+4. 显示长格式列表并且显示文件的索引节点号
+
+::
+
     [root@localhost /]# ls -li
     total 20
           120 lrwxrwxrwx.   1 root root    7 Mar 27  2018 bin -> usr/bin
@@ -83,23 +100,27 @@ ls 命令（list）用来显示目标列表，在 Linux 中是使用率较高的
     ...
     100663361 drwxr-xr-x.  20 root root  278 Feb 12 18:17 var
 
-    # 用逗号区隔每个文件和目录的名称
-    [root@localhost /]# ls -m
-    bin, boot, dev, etc, home, lib, lib64, media, mnt, opt, proc, root, run, sbin,
-    srv, sys, tmp, usr, var
+5. 在每个输出项后追加文件的类型标识符
 
-    # 在每个输出项后追加文件的类型标识符
+::
+
     [root@localhost /]# ls -F
     bin@   dev/  home/  lib64@  mnt/  proc/  run/   srv/  tmp/  var/
     boot/  etc/  lib@   media/  opt/  root/  sbin@  sys/  usr/
 
-    # 显示目录下所有的 php 文件
+6. 显示目录下所有的 php 文件
+
+::
+
     [root@localhost owncloud]# ls -l *.php
     -rwxrwxrwx 1 root root 4371 Feb 12 19:38 console.php
     -rwxrwxrwx 1 root root 5033 Feb 12 19:38 cron.php
     -rwxrwxrwx 1 root root 3678 Feb 12 19:38 index.php
 
-    # 递归显示目录下文件
+7. 递归显示目录下文件
+
+::
+
     [root@localhost updater]# ls -FR
     .:
     app/              COPYING-AGPL*  pub/        src/
