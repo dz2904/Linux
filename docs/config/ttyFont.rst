@@ -106,7 +106,7 @@ ter-932n.psf.gz 其中 9 是代号，32 代表高度，n 表示 normal，还有 
 
 .. note::
 
-    点阵字体在处理 ``0 o O 1 l i`` 等字符时十分容易混淆，这里推荐另一款字体：http://www.fial.com/~scott/tamsyn-font/
+    点阵字体在处理 ``0 o O 1 l i`` 等字符时十分容易混淆，这里推荐另一款字体：http://www.fial.com/~scott/tamsyn-font/ 或 http://pelulamu.net/unscii/
 
     将 *.psf.gz 文件放在字体目录下，在配置时请使用绝对路径指定字体。
 
