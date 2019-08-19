@@ -36,7 +36,10 @@ cd 命令是 Linux 中最常用的命令之一，它用于切换目录。
     [root@localhost /]# cd ~
     [root@localhost ~]# pwd
     /root
-
+    [root@localhost /]# cd ~xiao
+    [root@localhost xiao]# pwd
+    /home/xiao
+    
     # 切换到根目录
     [root@localhost ~]# cd /
     [root@localhost /]# pwd
