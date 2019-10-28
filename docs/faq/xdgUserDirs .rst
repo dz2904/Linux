@@ -29,7 +29,7 @@ xdg-user-dirs 就是帮助管理用户目录的工具。``xdg-user-dirs-update``
 
     XDG_DESKTOP_DIR="$HOME/Desktop"
     XDG_DOCUMENTS_DIR="$HOME/Documents"
-    XDG_DOWNLOAD_DIR="$HOME/Download"
+    XDG_DOWNLOAD_DIR="$HOME/Downloads"
     XDG_MUSIC_DIR="$HOME/Music"
     XDG_PICTURES_DIR="$HOME/Pictures"
     XDG_PUBLICSHARE_DIR="$HOME/Publicshare"
