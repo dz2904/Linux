@@ -7,4 +7,4 @@ GNU/Linux 点滴
    :glob:
 
    preface
-   chapters/*
+   TOC/*
