@@ -19,6 +19,7 @@ GitHub 仓库文件结构
     |--index.rst
     |--preface.rst
     |--appendix_A.rst
+    |--conf.py
     |--TOC/
        |--Chapter01.rst
        |--Chapter02.rst
