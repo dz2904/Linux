@@ -51,6 +51,10 @@ xdg-user-dirs 就是帮助管理用户目录的工具。``xdg-user-dirs-update``
 
     在把中文文件名修改为英文文件名时，不仅仅需要修改配置文件，还需要把文件夹名称由中文改成对应的英文（或新建英文名文件夹）。否则重启之后配置文件中对应的名称会为空。
 
+    ::
+        
+        mkdir Desktop Documents Download Music Pictures Publicshare Templates Videos
+    
 
 因为 xdg-user-dirs 会参照本地配置文件来了解正确的用户目录，所以可以自定义。若将 ~/.config/user-dirs.dirs 下 XDG_DOWNLOAD_DIR 变量设为了 $HOME/Internet，那么任何参照了该变量的程序都会改用这个目录。
 
