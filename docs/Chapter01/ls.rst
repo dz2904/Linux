@@ -137,3 +137,19 @@ ls 命令（list）用来显示目标列表，在 Linux 中是使用率较高的
 
     ./pub/css:
     main.css*
+
+8. 只显示目录下的文件夹
+
+::
+
+    [root@localhost updater]# ls -la | grep ^d
+    drwxr-xr-x 21 root  root  4096 Jul 13 13:49 .
+    drwxr-xr-x  3 root  root   4096 Jul  8 22:54 ..
+    drwxr-xr-x  2 root  root  4096 Jul  9 14:59 Desktop
+    drwxr-xr-x  8 root  root  4096 Jul 13 18:30 Documents
+    drwxr-xr-x  2 root  root 12288 Jul 13 15:49 Downloads
+    drwxr-xr-x  2 root  root  4096 Jul  9 14:59 Music
+    drwx------  2 root  root  4096 Jul 10 09:51 .ssh
+    drwxr-xr-x  2 root  root  4096 Jul  9 14:59 Templates
+    drwxr-xr-x  7 root  root  4096 Jul 11 11:43 Videos
+
