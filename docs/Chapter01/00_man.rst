@@ -100,9 +100,16 @@ COPYRIGHT                  版权信息
 SEE ALSO                      参照、相关信息
 =============     =============
     
+<<<<<<< HEAD
 .. nete::
     
     在通过 man 查看帮助手册时，命令语法（SYNOPSIS ）遵循7条规则。
+=======
+.. note::
+
+    在通过 man 查看帮助手册时，命令语法遵循7条规则。
+
+>>>>>>> 31c056ac8536b5a4939dbcb909b31977e8619658
     1. 方括号中的项是可选的
     2. 不在方括号中的项是必选项
     3. 黑体字必须按原样准确输入
@@ -157,3 +164,9 @@ SEE ALSO                      参照、相关信息
     [shiyanlou:/home/]$ whatis kill
     kill (1)             - send a signal to a process
     kill (2)             - send signal to a process
+
+
+    [shiyanlou:/home/]$ whatis passwd
+    passwd (1ssl)        - compute password hashes
+    passwd (1)           - change user password
+    passwd (5)           - the password file
