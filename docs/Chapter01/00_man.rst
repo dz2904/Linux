@@ -158,3 +158,9 @@ SEE ALSO                      参照、相关信息
     [shiyanlou:/home/]$ whatis kill
     kill (1)             - send a signal to a process
     kill (2)             - send signal to a process
+
+
+    [shiyanlou:/home/]$ whatis passwd
+    passwd (1ssl)        - compute password hashes
+    passwd (1)           - change user password
+    passwd (5)           - the password file
