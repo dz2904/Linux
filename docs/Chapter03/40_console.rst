@@ -31,9 +31,12 @@
 
     来感受一下最初的 UNIX 计算机，PDP-11 主机和多个 Teletype ASR33 终端。
 
+
     .. image:: ../Images/console.03.jpg
 
+
     看视频感受一下当时的程序员是怎么工作的。
+    
     `点击查看视频 >> <http://data.dongxg.top/teletype_ASR33.mp4>`_
 
 
