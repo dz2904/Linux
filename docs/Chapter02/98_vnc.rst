@@ -197,6 +197,6 @@ VNC Viewer 访问
 参考
 **************************************
 
-:doc:`Monty Python members <../Chapter01/00_man.rst>`
+:doc:`Monty Python members <../Chapter01/00_man>`
 
-:doc:`../Chapter01/00_man.rst`
+:doc:`../Chapter01/00_man`
