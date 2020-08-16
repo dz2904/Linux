@@ -78,7 +78,7 @@ Linux 帮助手册是一个庞大的参考书，为了更好的组织信息，Li
 8                 管理命令（系统管理员使用的特殊命令）
 =====     =====
 
-.. note::
+.. tip::
 
     在查看帮助手册时，在第一行的左上角和右上角都会显示命令所在的章节，如：MAN(1) 
 
@@ -99,10 +99,12 @@ BUGS                               错误、缺点、警告
 COPYRIGHT                  版权信息
 SEE ALSO                      参照、相关信息
 =============     =============
-    
+
+
 .. note::
     
     在通过 man 查看帮助手册时，命令语法（SYNOPSIS ）遵循7条规则。
+
     1. 方括号中的项是可选的
     2. 不在方括号中的项是必选项
     3. 黑体字必须按原样准确输入
@@ -157,3 +159,9 @@ SEE ALSO                      参照、相关信息
     [shiyanlou:/home/]$ whatis kill
     kill (1)             - send a signal to a process
     kill (2)             - send signal to a process
+
+
+    [shiyanlou:/home/]$ whatis passwd
+    passwd (1ssl)        - compute password hashes
+    passwd (1)           - change user password
+    passwd (5)           - the password file
