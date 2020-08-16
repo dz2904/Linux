@@ -197,6 +197,6 @@ VNC Viewer 访问
 参考
 **************************************
 
-:doc:`Monty Python members <../Chapter01/00_man>`
+比如通常: :doc:`Monty Python members <../Chapter01/00_man>`
 
-:doc:`../Chapter01/00_man`
+比如通常: :doc:`../Chapter01/00_man`
