@@ -193,3 +193,10 @@ VNC Viewer 访问
 .. image:: ../Images/vnc.06.png
 
 至此，我们使用了加密的 VNC，而且也不需要配置防火墙打开端口，也就是说使用 ssh 隧道在没有步骤三的情况下也是有效的。
+
+参考
+**************************************
+
+:doc:`Monty Python members <../Chapter01/00_man.rst>`
+
+:doc:`../Chapter01/00_man.rst`
