@@ -22,19 +22,16 @@ id 命令用于显示用户的 ID，以及所属群组的实际与有效 ID（�
 ::
 
     -a
-      可以忽略，只是为了与其他版本兼容。
+        可以忽略，只是为了与其他版本兼容。
 
      -g, --group
-      只打印有效的组 ID
+        只打印有效的组 ID
 
     -G, --groups
-      打印所有组 ID
+        打印所有组 ID
 
     -u, --user
-      显示用户 ID
-
-    --version
-      输出版本信息
+        显示用户 ID
 
 
 使用实例：
@@ -42,9 +39,9 @@ id 命令用于显示用户的 ID，以及所属群组的实际与有效 ID（�
 
 ::
 
-    [root@localhost ~]# id
-    uid=0(root) gid=0(root) groups=0(root)
+    [Linux]$ id
+    uid=1000(glenn) gid=1000(glenn) groups=1000(glenn),27(sudo)
 
     # 输出特定用户名 ftp 的 ID 信息
-    [root@localhost ~]# id ftp
+    [Linux]$ id ftp
     uid=14(ftp) gid=50(ftp) groups=50(ftp)

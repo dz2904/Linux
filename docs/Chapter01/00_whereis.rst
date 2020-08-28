@@ -36,21 +36,20 @@ whereis 命令可以查找指定命令的二进制文件、源文件和帮助文
 ::
 
     # 寻找二进制文件所在位置
-    [shiyanlou:/home/]$ whereis ls
+    [Linux]$  whereis ls
     ls: /usr/bin/ls /usr/share/man/man1/ls.1.gz
     
     # 只搜索二进制文件
-    [shiyanlou:/home/]$ whereis -b ls
+    [Linux]$  whereis -b ls
     ls: /usr/bin/ls
     
-    # 指定搜索位置
-    [shiyanlou:/home/]$ whereis -B /usr/bin/ -f ls
+    # 指定多个搜索位置
+    # -f 为必须项，用来明确分隔目录列表和要搜索的文件名。
+    [Linux]$  whereis -B /usr/bin/ -f ls
     ls: /usr/share/man/man1/ls.1.gz /usr/bin/ls
 
-    注意：使用这种方式时可以给出多个路径。-f 为必须项，用来明确分隔目录列表和要搜索的文件名。
-
     # 查看搜索路径
-    [shiyanlou:/home/]$ whereis -l
+    [Linux]$  whereis -l
     bin: /usr/bin
     bin: /usr/sbin
     bin: /usr/lib/x86_64-linux-gnu

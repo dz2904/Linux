@@ -27,7 +27,7 @@ env 命令可以查看环境变量，或在修改过的环境中运行程序。
 
 ::
 
-    
+    [Linux] $ env
     SHELL=/bin/bash
     SESSION_MANAGER=local/glenn-ThinkPad:@/tmp/.ICE-unix/2450,unix/glenn-ThinkPad:/tmp/.ICE-unix/2450
     QT_ACCESSIBILITY=1

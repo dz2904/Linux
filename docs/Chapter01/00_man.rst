@@ -36,7 +36,7 @@ Linux 提供了丰富的帮助手册，通过 man 命令可以查看 Linux 中�
 ::
 
     # 查看man的帮助手册
-    [shiyanlou:/home/]$ man man
+    [Linux]$  man man
     MAN(1)                        Manual pager utils                        MAN(1)
 
     NAME
@@ -138,7 +138,7 @@ SEE ALSO              参照、相关信息
 
 ::
 
-    [shiyanlou:/home/]$ man kill
+    [Linux]$  man kill
     KILL(1)                          User Commands                         KILL(1)
 
     NAME
@@ -157,7 +157,7 @@ SEE ALSO              参照、相关信息
            and init.
 
 
-    [shiyanlou:/home/]$ man 2 kill
+    [Linux]$  man 2 kill
     KILL(2)                    Linux Programmer's Manual                   KILL(2)
 
     NAME
@@ -177,12 +177,12 @@ SEE ALSO              参照、相关信息
 
 ::
 
-    [shiyanlou:/home/]$ whatis kill
+    [Linux]$  whatis kill
     kill (1)             - send a signal to a process
     kill (2)             - send signal to a process
 
 
-    [shiyanlou:/home/]$ whatis passwd
+    [Linux]$  whatis passwd
     passwd (1ssl)        - compute password hashes
     passwd (1)           - change user password
     passwd (5)           - the password file

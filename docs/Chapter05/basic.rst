@@ -73,6 +73,8 @@ set 命令可以 显示 shell 或环境变量，而 printenv 只是显示环境�
 
 由于 Shell 的特殊性，除了在启动程序时添加选项外，还可以在程序运行时设置选项。即使用 set 命令的一种变体， ``set -o option`` 打开/关闭选项。
 
+.. highlight:: none
+
 ::
 
     $ set -o
@@ -127,7 +129,7 @@ noclobber                是否允许重定向的输出替换文件
 home 目录， ``&`` 在后台运行程序， ``\\`` 转移字符等。
 
 
-:doc:`metacharacter`
+推荐阅读： :doc:`metacharacter`
 
 
 历史列表
@@ -151,6 +153,7 @@ home 目录， ``&`` 在后台运行程序， ``\\`` 转移字符等。
 Shell 中还有几个好用的历史列表命令，如 ``!!`` 执行上一个命令，``!*`` 使用上一条命令的选项和参数， ``!$`` 使用上一个命令的参数。
 
 ::
+
     [Linux]$ ls -l Music/
     total 0
     [Linux]$ !!
@@ -163,7 +166,7 @@ Shell 中还有几个好用的历史列表命令，如 ``!!`` 执行上一个命
     ls Music/
 
 
-:doc:`../Chapter01/00_history`
+推荐阅读： :doc:`../Chapter01/00_history`
 
 
 自动补全
@@ -203,26 +206,36 @@ Shell 中可以使用 <Tab> 键自动补全命令、路径及文件名、环境�
 别名
 ************************************
 
-别名就是赋予一条命令或者一组命令的名称。可以将别名看作是缩写，或者自定义命令的变体。创建别名需要使用 ``alias`` 命令：
+别名允许用户只输入一个单词就运行任意一个命令或一组命令（包括命令选项和文件名）。可以将别名看作是命令的快捷方式（就像是软链接），也可以将别名看作是缩写。使用别名可以在命令行中减少输入的时间，使工作更流畅，同时增加生产率。
+
+``alias`` 命令用于创建临时的别名，在设置别名后，只在当前登录会话中有效。如果退出 Shell 或重启系统后，别名就会消失。如果想让别名永久生效，可以将别名定义写入配置文件 ``~/.bashrc`` 中。不加选项和参数执行 ``alias`` 命令会显示所有已定义的别名列表。 ``unalias`` 命令用于删除别名。
 
 ::
 
+    # 定义别名
     [Linux] $ alias info='date; who'
 
-也可以不加选项和参数查看系统中已经定义的别名。
-
-::
-
-    alias egrep='egrep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias grep='grep --color=auto'
-    alias l='ls -CF'
+    # 查看系统中的别名
+    [Linux] $ alias 
+    alias info='data; who'
     alias la='ls -A'
     alias ll='ls -alF'
     alias ls='ls --color=auto'
     alias vi='vim
 
-:doc:`../Chapter01/00_alias`
+    # 删除别名
+    [Linux] $ unalias info
+
+
+
+别名的日常用法总结：
+
+1. 为命令设置默认的参数（例如 alias ping='ping -c 5' 设置 ping 命令的次数，alias rm='rm -i' 删除文件时需要确认）。
+2. 设置系统中多版本命令的默认路径（例如 GNU/grep 位于 /usr/local/bin/grep 中而 Unix grep 位于 /bin/grep 中。若想默认使用 GNU grep 则设置别名 grep='/usr/local/bin/grep' )。
+3. 为跨平台的操作创建命令别名，以增加兼容性（比如 alias ipconfig=ifconfig）。
+
+
+推荐阅读： :doc:`../Chapter01/00_alias`
 
 
 内置命令
@@ -232,32 +245,32 @@ Shell 有很多内置在其源代码中的命令。这些命令是内置的，�
 
 Bash 常用的内置命令
 
-alias： 显示和创建已有命令的别名。
-bg： 把作业放到后台。
-cd [arg]： 改变目录，如果不带参数，则回到主目录，带参数则切换到参数所指的目录。
-disown： 从作业表中删除一个活动作业。
-echo [args]： 显示 args 并换行。
-eval [args]： 把 args 读入 Shell，并执行产生的命令。
-exec command： 运行命令，替换掉当前 Shell。
-exit [n]： 以状态 n 退出 Shell。
-export [var]：使变量可被子 Shell 识别。
-fc： 历史的修改命令，用于编辑历史命令。
-fg： 把后台作业放到前台。
-getopts： 解析并处理命令行选项。
-help [command]： 显示关于内置命令的有用信息。如果指定了一个命令，则将显示该命令的详细信息。
-history： 显示带行号的命令历史列表。
-jobs： 显示放到后台的作业。
-kill [-signal process]： 向由 PID 号或作业号指定的进程发送信号。
-logout： 退出登录 Shell。
-pwd： 打印出当前的工作目录。
-read [var]： 从标准输入读取一行，保存到变量 var 中。
-set： 设置选项和位置参量。
-stop pid： 暂停第 pid 号进程的运行。
-suspend： 终止当前 Shell 的运行（对登录 Shell 无效）。
-times： 显示由当前 Shell 启动的进程运行所累计用户时间和系统时间。
-type [command]： 显示命令的类型，例如：pwd 是 Shell 的一个内置命令。
-unalias： 取消所有的命令别名设置。
-wait [pid#n]： 等待 pid 号为 n 的后台进程结束，并报告它的结束状态。
+- alias： 显示和创建已有命令的别名。
+- bg： 把作业放到后台。
+- cd [arg]： 改变目录，如果不带参数，则回到主目录，带参数则切换到参数所指的目录。
+- disown： 从作业表中删除一个活动作业。
+- echo [args]： 显示 args 并换行。
+- eval [args]： 把 args 读入 Shell，并执行产生的命令。
+- exec command： 运行命令，替换掉当前 Shell。
+- exit [n]： 以状态 n 退出 Shell。
+- export [var]：使变量可被子 Shell 识别。
+- fc： 历史的修改命令，用于编辑历史命令。
+- fg： 把后台作业放到前台。
+- getopts： 解析并处理命令行选项。
+- help [command]： 显示关于内置命令的有用信息。如果指定了一个命令，则将显示该命令的详细信息。
+- history： 显示带行号的命令历史列表。
+- jobs： 显示放到后台的作业。
+- kill [-signal process]： 向由 PID 号或作业号指定的进程发送信号。
+- logout： 退出登录 Shell。
+- pwd： 打印出当前的工作目录。
+- read [var]： 从标准输入读取一行，保存到变量 var 中。
+- set： 设置选项和位置参量。
+- stop pid： 暂停第 pid 号进程的运行。
+- suspend： 终止当前 Shell 的运行（对登录 Shell 无效）。
+- times： 显示由当前 Shell 启动的进程运行所累计用户时间和系统时间。
+- type [command]： 显示命令的类型，例如：pwd 是 Shell 的一个内置命令。
+- unalias： 取消所有的命令别名设置。
+- wait [pid#n]： 等待 pid 号为 n 的后台进程结束，并报告它的结束状态。
 
 .. attention::
 

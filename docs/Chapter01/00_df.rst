@@ -1,19 +1,40 @@
-df 查看磁盘使用情况
+df 查看磁盘分区空间
 ####################################
 
+df 命令用于查看磁盘分区的空间及使用和剩余的空间等信息。
 
-
-df 命令
+命令格式：
 ************************************
 
-df命令用于显示磁盘分区上的可使用的磁盘空间。默认显示单位为KB。可以利用该命令来获取硬盘被占用了多少空间，目前还剩下多少空间等信息。
-
-最常用的选项示例：
+.. highlight:: none
 
 ::
 
-    # 默认显示所有挂载的磁盘
-    [gavin:/home/]$ df
+    df [OPTION]... [FILE]...
+
+常用选项：
+************************************
+
+::
+
+    -h, --human-readable
+        以更可读的方式显示分区大小（以 1024 为单位转换）
+
+    -H, --si
+        以更可读的方式显示分区大小（以 1000 为单位转换）
+
+    -t, --type=TYPE
+        指定文件的分区格式
+
+
+
+使用实例：
+************************************
+
+::
+
+    # 默认显示所有挂载的磁盘，默认以 KB 为单位。
+    [Linux]$  df
     文件系统          1K-块     已用     可用 已用% 挂载点
     udev            3975328        0  3975328    0% /dev
     tmpfs            799028     9516   789512    2% /run
@@ -26,7 +47,7 @@ df命令用于显示磁盘分区上的可使用的磁盘空间。默认显示单
     tmpfs            799024       20   799004    1% /run/user/1000
 
     # 以更可读的方式显示
-    [gavin:/home/]$ df -h
+    [Linux]$  df -h
     文件系统        容量  已用  可用 已用% 挂载点
     udev            3.8G     0  3.8G    0% /dev
     tmpfs           781M  9.3M  772M    2% /run
@@ -38,27 +59,3 @@ df命令用于显示磁盘分区上的可使用的磁盘空间。默认显示单
     /dev/mmcblk0p1   93M  5.1M   88M    6% /boot/efi
     tmpfs           781M   20K  781M    1% /run/user/1000
 
-    # 查看全部文件系统
-    [gavin:/home/]$ df -a
-    文件系统          1K-块     已用     可用 已用% 挂载点
-    sysfs                 0        0        0     - /sys
-    proc                  0        0        0     - /proc
-    udev            3975328        0  3975328    0% /dev
-    devpts                0        0        0     - /dev/pts
-    tmpfs            799028     9516   789512    2% /run
-    /dev/mmcblk0p3 21977248 12651684  8186108   61% /
-    securityfs            0        0        0     - /sys/kernel/security
-    tmpfs           3995128   120492  3874636    4% /dev/shm
-    tmpfs              5120        4     5116    1% /run/lock
-    tmpfs           3995128        0  3995128    0% /sys/fs/cgroup
-    cgroup2               0        0        0     - /sys/fs/cgroup/unified
-    cgroup                0        0        0     - /sys/fs/cgroup/systemd
-    pstore                0        0        0     - /sys/fs/pstore
-    efivarfs              0        0        0     - /sys/firmware/efi/efivars
-    bpf                   0        0        0     - /sys/fs/bpf
-    cgroup                0        0        0     - /sys/fs/cgroup/pids
-    cgroup                0        0        0     - /sys/fs/cgroup/rdma
-    /dev/mmcblk0p4 95569324 10825896 79845740   12% /home/xiao/Videos/vlc
-    /dev/mmcblk0p1    94759     5199    89560    6% /boot/efi
-    tmpfs            799024       20   799004    1% /run/user/1000
-    ...

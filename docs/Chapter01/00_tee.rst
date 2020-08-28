@@ -32,7 +32,7 @@ tee 命令会从标准输入读取数据，将数据输出到标准输出，同�
 ::
 
     # 将输出保存到多个文件中
-    ls | tee a.txt b.txt
+    [Linux]$ ls | tee a.txt b.txt
     a.txt
     b.txt
     Desktop
@@ -44,11 +44,11 @@ tee 命令会从标准输入读取数据，将数据输出到标准输出，同�
     Templates
 
     # 将命令输出保存到文件中
-    who | tee w.txt
+    [Linux]$ who | tee w.txt
     glenn    :1           2020-08-23 20:52 (:1)
     glenn@glenn-ThinkPad:~$ cat w.txt 
     glenn    :1           2020-08-23 20:52 (:1)
 
     # 查看多个文件中的内容，并保存
-    cat a.txt b.txt | tee all.txt | less
+    [Linux]$ cat a.txt b.txt | tee all.txt | less
 
