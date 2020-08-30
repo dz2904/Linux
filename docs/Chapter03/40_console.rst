@@ -35,6 +35,7 @@
     .. image:: ../Images/console.03.jpg
 
 
+
     看视频感受一下当时的程序员是怎么工作的。
     
     `点击查看视频 >> <http://data.dongxg.top/teletype_ASR33.mp4>`_
