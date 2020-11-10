@@ -50,6 +50,7 @@ CentOS 设置网口静态 IP
 .. note::
 
     其它配置说明：
+    
     - TYPE=Ethernet    网卡类型：为以太网
     - PROXY_METHOD=none    代理方式：关闭状态
     - BROWSER_ONLY=no    只是浏览器：否
@@ -81,6 +82,7 @@ CentOS 设置网口静态 IP
 
 ::
 
+    # GATEWAY 列为网关
     [Linux]# route -n
     Kernel IP routing table
     Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
@@ -90,6 +92,7 @@ CentOS 设置网口静态 IP
     0.0.0.0         192.168.120.240 0.0.0.0         UG    0      0        0 eth0
     
     
+    # link src 后为网关
     [Linux]# ip route show
     default via 192.168.1.1 dev wlp82s0 proto dhcp metric 600 
     169.254.0.0/16 dev wlp82s0 scope link metric 1000 
