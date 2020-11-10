@@ -38,12 +38,32 @@ CentOS 设置网口静态 IP
 
 ::
 
+    # CentOS 7
     [Linux]# service network restart
     或
     [Linux]# systemctl restart network.service
 
-    # Centos 8
+    # CentOS 8
     [Linux]# nmcli c reload
+
+
+.. note::
+
+    其它配置说明：
+    - TYPE=Ethernet    网卡类型：为以太网
+    - PROXY_METHOD=none    代理方式：关闭状态
+    - BROWSER_ONLY=no    只是浏览器：否
+    - BOOTPROTO=dhcp    网卡的引导协议
+    - DEFROUTE=yes    默认路由
+    - IPV4_FAILURE_FATAL=no     是否开启致命错误检测
+    - IPV6INIT=yes    IPV6 是否自动初始化
+    - IPV6_AUTOCONF=yes     IPV6 是否自动配置
+    - IPV6_DEFROUTE=yes    IPV6 是否可以为默认路由
+    - IPV6_FAILURE_FATAL=no    IPV6 是否开启致命错误检测
+    - IPV6_ADDR_GEN_MODE=stable-privacy    IPV6 地址生成模型
+    - NAME=etho    网络接口名称，即配置文件名后半部分。
+    - UUID=f47bde51-fa78-4f79-b68f-d5dd90cfc698    通用唯一识别码
+    - PREFIX=24    子网掩码
 
 
 修改网关
@@ -57,15 +77,22 @@ CentOS 设置网口静态 IP
     HOSTNAME=localhost.localdomain
     GATEWAY=192.168.191.2 #网关地址
 
-查看网关命令
+查看网关命令（二选一）
 
 ::
 
     [Linux]# route -n
-    route -n
     Kernel IP routing table
     Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
     192.168.120.0   0.0.0.0         255.255.255.0   U     0      0        0 eth0
     192.168.0.0     192.168.120.1   255.255.0.0     UG    0      0        0 eth0
     10.0.0.0        192.168.120.1   255.0.0.0       UG    0      0        0 eth0
     0.0.0.0         192.168.120.240 0.0.0.0         UG    0      0        0 eth0
+    
+    
+    [Linux]# ip route show
+    default via 192.168.1.1 dev wlp82s0 proto dhcp metric 600 
+    169.254.0.0/16 dev wlp82s0 scope link metric 1000 
+    172.16.40.0/24 dev vmnet1 proto kernel scope link src 172.16.40.1 
+    172.16.51.0/24 dev vmnet8 proto kernel scope link src 172.16.51.1 
+    192.168.1.0/24 dev wlp82s0 proto kernel scope link src 192.168.1.108 metric 600 
