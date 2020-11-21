@@ -1,0 +1,258 @@
+H3C 交换机密码忘记
+####################################
+
+H3C 系列交换机对使用 Console 口登录的用户支持三种认证方式：
+
+- None（无认证）
+- Password（使用密码认证）
+- Scheme（使用用户名和密码认证）
+
+在密码丢失后采取正确的方式找回密码或重新配置密码。
+
+.. note ::
+
+    以下操作适用于在登录认证方式为 Password 方式或 Scheme 方式中的本地认证方式下恢复登录密码。
+
+    如果设备上配置了Password Control 功能，控制台登录密码的配置不会在配置文件中显示，需先关闭 Password Control 功能。
+
+
+操作步骤
+*******************************
+
+1. 正确使用 Console 线与交换机连接，配置终端仿真程序，使其能够正常显示设备的登录界面。
+
+2. 重新启动交换机。
+
+3. 在交换机完成自检后，在下面的界面键入 <Ctrl+B>，并根据提示输入 BootRom 菜单登录密码，进入 BootRom 菜单。
+
+.. highlight:: none
+
+::
+
+    Starting......
+
+     
+
+                ***********************************************************
+
+                *                                                         *
+
+                *        H3C S5500-28C-PWR-EI BOOTROM, Version 509        *
+
+                *                                                         *
+
+                ***********************************************************
+
+                Copyright (c) 2004-2009 Hangzhou H3C Tech. Co., Ltd.
+
+                Creation date   : Jan  9 2009, 10:44:09
+
+                CPU Clock Speed : 533MHz
+
+                BUS Clock Speed : 133MHz
+
+                Memory Size     : 256MB
+
+                Mac Address     : 002389294f70
+
+     
+
+     
+
+    Press Ctrl-B to enter Boot Menu... 1  
+
+
+.. note::
+
+    缺省情况下，进入 BootRom 菜单的密码为空。如果您设置了 BootRom 菜单登录密码，但该密码已经丢失，请根据“恢复BootRom菜单登录密码”中介绍的方法进行恢复。
+
+4.  进入 BootRom 菜单后，请键入“7”，选择“跳过配置文件启动”功能，并在系统提示时输入“y”进行确认。
+
+::
+
+             BOOT  MENU
+
+     
+
+    1. Download application file to flash
+
+    2. Select application file to boot
+
+    3. Display all files in flash
+
+    4. Delete file from flash
+
+    5. Modify bootrom password
+
+    6. Enter bootrom upgrade menu
+
+    7. Skip current configuration file
+
+    8. Set bootrom password recovery
+
+    9. Set switch startup mode
+
+    0. Reboot
+
+     
+
+    Enter your choice(0-9): 7
+
+    The current setting is running configuration file when reboot.
+
+    Are you sure to skip current configuration file when reboot? Yes or No(Y/N) y
+
+    Setting......done!  
+
+
+.. note::
+
+    1. Download application file to flash     下载应用程序到 Flash 中
+    2. Select application file to boot     选择启动文件
+    3. Display all files in flash     显示 Flash 中所有文件
+    4. Delete file from flash     删除 Flash 中的文件
+    5. Modify bootrom password     修改 BootROM 密码
+    6. Enter bootrom upgrade menu     进入 BootROM 升级菜单
+    7. Skip current configuration file     设置重启不运行当前配置文件
+    8. Set bootrom password recovery     恢复 BootROM 密码
+    9. Set switch startup mode     设置交换机启动模式
+    0. Reboot     重新启动交换机
+
+
+5. 回到 BootRom 菜单后，输入“0”重新启动交换机。
+
+
+6. 再次启动时，交换机会跳过配置文件，即跳过对控制台密码的配置，您可以直接登录交换机。
+
+::
+
+    ****************************************************************************
+
+    * Copyright (c) 2004-2010 Hangzhou H3C Tech. Co., Ltd. All rights reserved.*
+
+    * Without the owner's prior written consent,                               *
+
+    * no decompiling or reverse-engineering shall be allowed.                  *
+
+    ****************************************************************************
+
+     
+
+    Configuration file is skipped.
+
+    User interface aux0 is available.
+
+     
+
+     
+
+     
+
+    Press ENTER to get started.
+
+    <H3C>                       
+
+
+7. 进入命令行接口后，您可以使用 display startup 命令查看启动配置文件，并使用 more 命令查看该配置文件中的控制台密码配置。
+
+::
+
+    <H3C> display startup
+
+      Current startup saved-configuration file:          NULL
+
+      Next startup saved-configuration file:             flash:/startup.cfg 
+
+    <H3C> more startup.cfg
+
+如果认证方式是 Password 方式，请关注配置文件中的以下部分，即配置控制台登录密码的配置命令。
+
+::
+
+    # 配置密码为明文方式的显示效果：
+    set authentication password simple test
+
+    # 配置密码为密文方式的显示效果：
+    set authentication password cipher .]@USE=B,53Q=^Q`MAF4<1!!  
+
+
+如果认证方式是 Scheme 方式，请关注配置文件中的以下部分，即配置本地用户名和密码的配置命令（以用户名为admin为例）。
+
+::
+
+    local-user admin
+    password simple 123
+    service-type terminal
+ 
+
+.. note::
+
+    忘记密码需要将密码设置直接显示在“password simple”中，此时建议您修改登录密码。
+
+8. 通过 copy 命令对启动配置文件进行备份，以便在修改登录密码时保留原有启动配置文件。在本例中，我们将备份文件命名为“startup_bak.cfg”。
+
+::
+
+    <H3C> copy startup.cfg startup_bak.cfg
+
+    Copy flash:/startup.cfg to flash:/startup_bak.cfg?[Y/N]:y
+
+    .......
+
+    %Copy file flash:/startup.cfg to flash:/startup_bak.cfg...Done.
+
+
+9. 给交换机配置一个 IP 地址，此处配置为 192.168.1.2
+
+::
+
+    System View: return to User View with Ctrl+Z.
+
+    [H3C]int vlan 1
+
+    [H3C-Vlan-interface1]ip add 192.168.1.2 24
+
+    [H3C-Vlan-interface1]quit
+
+    [H3C]quit
+
+
+10. 您可以使用 FTP 或 TFTP 将启动配置文件发送到 PC 上，使用文本编辑软件对配置文件进行编辑，请根据您的需要采用以下修改方案：
+
+- 修改“authentication-mode”行最后的登录认证方式为“none”，即将认证方式修改为不认证。
+
+- 修改“set authentication password”行后面的密码显示方式为明文（simple），并重新写入新的密码。（Password 方式适用）
+
+- 修改“password”行后面的密码显示方式为明文（simple），并重新写入新的密码。（Scheme 方式适用）
+
+
+11. 将配置文件上传到交换机上覆盖原配置文件。再重启交换机，不保存配置，交换机将使用更新后的配置文件，您可以根据修改后的密码进行登录，同时其他原有配置不会丢失。
+
+::
+
+    reboot
+
+    Start to check configuration with next startup configuration file, please wait.........DONE!
+
+     This command will reboot the device. Current configuration will be lost, save current configuration? [Y/N]:n     //注意这里是输入n
+
+     This command will reboot the device. Continue? [Y/N]:y
+
+    #Apr 26 12:07:45:150 2000 H3C DEVM/1/REBOOT:
+
+     Reboot device by command.
+
+    %Apr 26 12:07:45:236 2000 H3C DEVM/5/SYSTEM_REBOOT: System is rebooting now.
+
+     Now rebooting, please wait...
+
+    System is starting...
+
+    Press Ctrl+D to access BASIC-BOOTWARE MENU
+
+    Booting Normal Extend BootWare
+
+    The Extend BootWare is self-decompressing.......................Done!
+
+
+参考连接： http://www.h3c.com/cn/Service/Document_Software/Document_Center/Switches/Catalog/S5820X/S5820X/Maintenance/Maintenance_Manual/H3C_DLMMHF(V1.01)/
