@@ -1,0 +1,68 @@
+dd 转换和复制文件
+####################################
+
+dd 命令用于从标准输入或文件中读取数据，根据指定的格式来转换数据，再输出到文件、设备或标准输出。
+
+dd 命令与其它的 Linux 程序略有不同，因为它的命令行选项格式为“选项=值”。
+
+
+命令格式：
+************************************
+
+.. highlight:: none
+
+::
+
+    dd [OPERAND]...
+
+
+常用选项：
+************************************
+
+::
+
+    if=FILE
+        指定输入的文件，默认为标准输入
+
+    of=FILE
+        指定输出的文件，默认为标准输出
+
+    ibs=BYTES
+        一次输入的字节大小，即指定一个块大小为 bytes 个字节
+
+    obs=BYTES
+        一次输出的字节大小，即指定一个块大小为 bytes 个字节
+
+    bs=BYTES
+        同时设置输入/输出的块大小为 bytes 个字节
+
+    count=N
+        ascii：转换 ebcdic 为 ascii
+        ebcdic：转换 ascii 为 ebcdic
+        ibm：转换 ascii 为 alternate ebcdic
+        block：把每一行转换为长度为 cbs，不足部分用空格填充
+        unblock：使每一行的长度都为 cbs，不足部分用空格填充
+        lcase：把大写字符转换为小写字符
+        ucase：把小写字符转换为大写字符
+        swab：交换输入的每对字节
+        noerror：出错时不停止
+        notrunc：不截短输出文件
+        sync：将每个输入块填充到 ibs 个字节，不足部分用空（NUL）字符补齐
+        
+
+使用实例：
+************************************
+
+::
+
+    # 将 /dev/hda 磁盘备份到 /dev/hdb
+    [Linux]$  dd if=/dev/hda of=/dev/hdb
+
+    # 将/dev/hdb全盘数据备份到指定路径的image文件
+    [Linux]$  dd if=/dev/hdb of=/root/image
+    
+    # 将 file1 中的所有英文字母转换为大写，并另存为 file2
+    [Linux]$  dd if=file1 of=file2 conv=ucase 
+    
+    备份 /dev/hdb 全盘数据，并利用 gzip 工具进行压缩，保存到指定路径
+    [Linux]$ dd if=/dev/hdb | gzip > /root/image.gz
