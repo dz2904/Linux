@@ -1,0 +1,82 @@
+cp 复制文件或目录
+####################################
+
+cp 命令（copy）用来复制文件（或目录）到指定的路径。
+
+cp 命令还支持同时复制多个文件，当一次复制多个文件时，目标路径必须存在。
+
+
+命令格式：
+************************************
+
+.. highlight:: none
+
+::
+
+    cp [OPTION]... [-T] SOURCE DEST
+    cp [OPTION]... SOURCE... DIRECTORY
+    cp [OPTION]... -t DIRECTORY SOURCE...
+
+
+常用选项：
+************************************
+
+::
+
+    -a, --archive
+      保留链接、文件属性，并复制目录下的所有内容。其作用等于 dpR 参数组合
+
+    -b
+      覆盖已存在的文件前将文件备份
+
+    -d
+      当复制符号连接时，把符号连接指向源文件或源目录
+
+    -f, --force
+      强制复制，覆盖已经存在的文件时不提示
+
+    -i, --interactive
+      在覆盖已经存在的文件时给出提示，要求用户确认是否覆盖
+
+    -l, --link
+      对源文件建立硬连接，而非复制文件
+
+    -n, --no-clobber
+      不覆盖已经存在的文件
+
+    -p
+      除复制文件的内容外，同时复制修改时间和访问权限等
+
+    -R, -r, --recursive
+      递归处理，将指定目录下的文件与子目录一并复制
+
+    -s, --symbolic-link
+      对源文件建立符号连接，而非复制文件
+
+
+使用实例：
+***********************
+
+::
+
+    # 复制文件并重命名
+    [Linux]$ ls
+    aclocal  alias  apxs  aulastlog  bin
+    [Linux]$ cp alias bin/aaa
+    [Linux]$ ls -l bin/
+    total 4
+    -rwxr-xr-x 1 root root 29 Feb 15 13:57 aaa
+
+    # 复制多个文件到文件夹
+    [Linux]$ cp apxs aulastlog bin/
+    [Linux]$ ls bin/
+    aaa  apxs  aulastlog
+
+    # 递归复制整个文件目录
+    [Linux]$ cp -r bin binBk/
+
+    # 交互式地复制文件
+    [Linux]$ ls bin/
+    aaa  apxs  aulastlog  cp
+    [Linux]$ cp -i apxs bin/
+    cp: overwrite ‘bin/apxs’? y
