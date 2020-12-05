@@ -5,7 +5,7 @@
 
 压缩可分为无损压缩与有损压缩两种，但不管是采用何种技术模型，其本质内容都是一样的，即通过某种特殊的编码方式将数据信息中存在的重复度、冗余度有效地降低，从而达到数据压缩的目的。例如二进制代码压缩，有 000000，可以把它变成 6 个 0 的写法 60，来减少该文件的空间。解压就是将压缩包中的文件恢复成没有压缩前的样子。
 
-.. tips:: 有损压缩
+.. note:: 有损压缩
 
     在压缩时去除“不必要”的信息，对文件进行剪裁以使它变得更小，这种压缩方法称为有损压缩。在压缩后将无法复原成原始文件的样子。因此，如果需要完全重现原来的内容（例如软件应用程序、数据库和源代码），应该使用无损压缩。
 
@@ -14,7 +14,7 @@
 
 在 Linux 中很多压缩程序只能针对一个文件进行压缩，当要压缩一大堆文件时，首先得先将一堆文件打成一个包（tar 命令），然后再用压缩程序进行压缩（gzip、bzip2 命令），就是说压缩会分为两步，先打包再压缩，各干个的事。
 
-.. note::打包和压缩
+.. note:: 打包和压缩
 
     1. 打包：将一大堆文件或目录变成一个总的文件
     2. 压缩：将一个大的文件通过一些压缩算法变成一个小文件
@@ -25,7 +25,7 @@
 
 tar 命令可以将多个文件和目录创建一个档案（归档），tar 最初是用来在磁带上创建档案；tar  命令也可以修改档案中的文件，或者加入新的文件；使用 tar 程序打出来的包我们常称为 tar 包，tar 包通常以 ``.tar`` 结尾。
 
-.. hips:: 归档的一般用途：
+.. hint:: 归档的一般用途：
 
     * 把一大堆的文件和目录打包成一个 tar 包，便于网络传输。
     * 生成tar包后，再用其它的程序进行压缩。
@@ -65,6 +65,7 @@ zip 是一个应用广泛的跨平台的打包+压缩工具，压缩文件的扩
 zip 是一种相当简单的分别压缩每个文件的存档格式。分别压缩文件允许不读取额外的数据而检索独立的文件；理论上，允许对不同的文件使用不同的算法。
 
 推荐阅读： :doc:`../Chapter01/00_zip`
+
 推荐阅读： :doc:`../Chapter01/00_unzip`
 
 
@@ -72,39 +73,67 @@ zip 是一种相当简单的分别压缩每个文件的存档格式。分别压�
 ******************************
 
 **tar**
+
 打包：tar -cvf FileName.tar DirName
+
 解包：tar -xvf FileName.tar
 
+
 **.gz**
+
 压缩：gzip FileName
+
 解压1：gunzip FileName.gz
+
 解压2：gzip -d FileName.gz
 
+
 **.tar.gz 或 .tgz**
+
 压缩：tar -zcvf FileName.tar.gz DirName
+
 解压：tar -zxvf FileName.tar.gz
 
+
 **.bz2**
+
 压缩： bzip2 -z FileName
+
 解压1：bzip2 -d FileName.bz2
+
 解压2：bunzip2 FileName.bz2
 
+
 **.tar.bz2**
+
 压缩：tar -jcvf FileName.tar.bz2 DirName
+
 解压：tar -jxvf FileName.tar.bz2
 
+
 **.Z**
+
 压缩：compress FileName
+
 解压：uncompress FileName.Z
 
+
 **.tar.Z**
+
 压缩：tar -Zcvf FileName.tar.Z DirName
+
 解压：tar -Zxvf FileName.tar.Z
 
+
 **.zip**
+
 压缩：zip FileName.zip DirName
+
 解压：unzip FileName.zip
 
+
 **.rar**
+
 压缩：rar -a FileName.rar DirName 
+
 解压：rar -x FileName.rar
