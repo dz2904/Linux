@@ -5,6 +5,7 @@ env 查看环境变量
 
 env 命令可以查看环境变量，或在修改过的环境中运行程序。
 
+
 命令格式：
 ************************************
 
@@ -31,7 +32,6 @@ env 命令可以查看环境变量，或在修改过的环境中运行程序。
 
     [Linux] $ env
     SHELL=/bin/bash
-    SESSION_MANAGER=local/glenn-ThinkPad:@/tmp/.ICE-unix/2450,unix/glenn-ThinkPad:/tmp/.ICE-unix/2450
     QT_ACCESSIBILITY=1
     COLORTERM=truecolor
     XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
@@ -45,4 +45,3 @@ env 命令可以查看环境变量，或在修改过的环境中运行程序。
     LC_NAME=en_US.UTF-8
     SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
     XMODIFIERS=@im=ibus
-

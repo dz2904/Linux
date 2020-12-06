@@ -25,23 +25,23 @@ file 命令用来识别文件类型，也可用来识别文件的编码格式。
 
 ::
 
--b, --brief
-    不显示文件名称（简要模式）
+    -b, --brief
+        不显示文件名称（简要模式）
 
--c, --checking-printout
-    显示详细执行过程，便于排错或分析程序执行的情形
+    -c, --checking-printout
+        显示详细执行过程，便于排错或分析程序执行的情形
 
--f, --files-from namefile
-    指定名称文件，识别文件中列出的所有文件
+    -f, --files-from namefile
+        指定名称文件，识别文件中列出的所有文件
 
--i, --mime
-    显示 MIME 类别
+    -i, --mime
+        显示 MIME 类别
 
--L, --dereference
-    直接显示符号连接所指向的文件类别
+    -L, --dereference
+        直接显示符号连接所指向的文件类别
 
--z, --uncompress
-    尝试去解读压缩文件的内容
+    -z, --uncompress
+        尝试去解读压缩文件的内容
 
 
 使用实例：
