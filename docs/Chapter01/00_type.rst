@@ -49,6 +49,7 @@ type 命令用于查看命令的类型，它是 shell 的内部命令，命令�
     ls is aliased to `ls --color=tty'
     ls is /bin/ls
 
+    # 各种类型的输出
     [Linux]$ type cd
     cd is a shell builtin
 

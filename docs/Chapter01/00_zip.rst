@@ -3,7 +3,7 @@
 zip 归档和压缩文件
 ####################################
 
-zip 不同于 gzip 压缩命令，它可直接用于压缩文件夹，压缩文件的扩展名为 ``.zip`` 。解压命令为  :ref:`unzip <cmd_unzip>`
+zip 不同于 gzip 压缩命令，它可直接用于压缩文件夹，压缩文件的扩展名为 ``.zip`` 。解压命令为  :ref:`unzip <cmd_unzip>` 。
 
 
 命令格式：
@@ -13,7 +13,8 @@ zip 不同于 gzip 压缩命令，它可直接用于压缩文件夹，压缩文�
 
 ::
 
-    zip  [-aABcdDeEfFghjklLmoqrRSTuvVwXyz!@$] [--longoption ...]  [-b path] [-n suffixes] [-t date] [-tt date] [zipfile [file ...]]  [-xi list]
+    zip  [-aABcdDeEfFghjklLmoqrRSTuvVwXyz!@$] [--longoption ...]  [-b path] 
+    [-n suffixes] [-t date] [-tt date] [zipfile [file ...]]  [-xi list]
 
     zipcloak (see separate man page)
 

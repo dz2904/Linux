@@ -49,13 +49,11 @@ ln 用于为文件和目录创建一个链接，在 Linux 中有两种链接的�
     12189699 -rw-rw-r-- 2 glenn glenn 0 Dec  6 08:54 0.txt
     12189699 -rw-rw-r-- 2 glenn glenn 0 Dec  6 08:54 1.txt
 
-
     # 在指定目录，创建一个同名的硬链接:
     [Linux]$ ln 1.txt /media/
     [Linux]$ ls -li /media
     total 0
     12189699 -rw-rw-r-- 3 glenn glenn 0 Dec  6 08:54 1.txt
-
 
     # 在当前目录，创建一个软链接:
     [Linux]$ ln -s 1.txt z.txt
@@ -65,19 +63,13 @@ ln 用于为文件和目录创建一个链接，在 Linux 中有两种链接的�
     12189699 -rw-rw-r-- 3 glenn glenn 0 Dec  6 08:54 1.txt
     12189708 lrwxrwxrwx 1 glenn glenn 5 Dec  6 09:04 z.txt -> 1.txt
 
-
-    # 更新符号连接
+    # 更新软连接
+    [Linux]$ ln -sf 0.txt z.txt
     [Linux]$ ls -l
-    total 4
-    lrwxrwxrwx 1 glenn glenn    9 Dec  6 09:10 3.txt -> doc/3.txt
-    drwxrwxr-x 2 glenn glenn 4096 Dec  6 09:07 doc
-
-    [Linux]$ ln -sf doc/5.txt 3.txt
-
-    [Linux]$ ls -l
-    total 4
-    lrwxrwxrwx 1 glenn glenn    9 Dec  6 09:10 3.txt -> doc/5.txt
-    drwxrwxr-x 2 glenn glenn 4096 Dec  6 09:07 doc
+    total 0
+    12189699 -rw-rw-r-- 3 glenn glenn 0 Dec  6 08:54 0.txt
+    12189699 -rw-rw-r-- 3 glenn glenn 0 Dec  6 08:54 1.txt
+    12189708 lrwxrwxrwx 1 glenn glenn 5 Dec  6 09:04 z.txt -> 0.txt
 
 
 .. hint:: 删除目录软链接

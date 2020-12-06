@@ -5,7 +5,7 @@ id 显示用户 ID
 
 id 命令用于显示用户的 ID，以及所属群组的实际与有效 ID（若两个ID相同，则仅显示实际ID）。若没有指定用户名称，则显示当前用户的 ID。
 
-一些程序可能需要 UID/GID 来运行。id 使我们更加容易地找出用户的 UID 以 GID 而不必在 /etc/group 文件中搜寻。
+一些程序可能需要 UID/GID 来运行。id 使我们更加容易地找出用户的 UID 以 GID 而不必在 ``/etc/group`` 文件中搜索。
 
 
 命令格式：
@@ -23,9 +23,6 @@ id 命令用于显示用户的 ID，以及所属群组的实际与有效 ID（�
 
 ::
 
-    -a
-        可以忽略，只是为了与其他版本兼容。
-
      -g, --group
         只打印有效的组 ID
 
@@ -41,9 +38,10 @@ id 命令用于显示用户的 ID，以及所属群组的实际与有效 ID（�
 
 ::
 
+    # 显示当前用户的 ID 信息
     [Linux]$ id
     uid=1000(glenn) gid=1000(glenn) groups=1000(glenn),27(sudo)
 
-    # 输出特定用户名 ftp 的 ID 信息
+    # 显示用户名 ftp 的 ID 信息
     [Linux]$ id ftp
     uid=14(ftp) gid=50(ftp) groups=50(ftp)

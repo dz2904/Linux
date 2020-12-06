@@ -93,8 +93,10 @@ wget 可以跟踪 HTML 页面上的链接依次下载来创建远程服务器的
     [Linux]$ cat filelist.txt
     https://wordpress.org/latest.tar.gz
     https://wordpress.org/latest.zip
-
     [Linux]$ wget -i filelist.txt
+
+    # 下载指定格式的文件
+    [Linux]$ wget -r -A .pdf,jpg https://wordpress.org/
 
 
 高级用法
@@ -111,19 +113,8 @@ wget 可以跟踪 HTML 页面上的链接依次下载来创建远程服务器的
 * -convert-links：下载后，转换成本地的链接
 * -page-requisites：下载额外的东西，如样式表
 
-2. 下载指定格式文件
 
-::
-
-    [Linux]$ wget -r -A .pdf,jpg url
-
-可以在以下情况使用该功能：
-
-* 下载一个网站的所有图片
-* 下载一个网站的所有视频
-* 下载一个网站的所有PDF文件
-
-3. 下载 FTP 服务器中的文件
+2. 载 FTP 服务器中的文件
 
 ::
 
@@ -132,4 +123,3 @@ wget 可以跟踪 HTML 页面上的链接依次下载来创建远程服务器的
     
     # 指定用户名和密码
     [Linux]$ wget --ftp-user=USERNAME --ftp-password=PASSWORD url
-

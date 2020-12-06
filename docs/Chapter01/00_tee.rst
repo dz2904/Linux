@@ -53,4 +53,3 @@ tee 命令会从标准输入读取数据，将数据输出到标准输出，同�
 
     # 查看多个文件中的内容，并保存
     [Linux]$ cat a.txt b.txt | tee all.txt | less
-

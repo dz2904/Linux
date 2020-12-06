@@ -3,7 +3,7 @@
 ls 显示目录中的文件
 ####################################
 
-ls 命令（list）用来显示目录所含的文件及子目录，在 Linux 中是使用率较高的命令。
+ls（list）用来显示目录所含的文件及子目录，在 Linux 中是使用率较高的命令。
 
 
 命令格式：
@@ -141,4 +141,3 @@ ls 命令（list）用来显示目录所含的文件及子目录，在 Linux 中
     drwx------  2 root  root  4096 Jul 10 09:51 .ssh
     drwxr-xr-x  2 root  root  4096 Jul  9 14:59 Templates
     drwxr-xr-x  7 root  root  4096 Jul 11 11:43 Videos
-

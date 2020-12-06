@@ -3,11 +3,11 @@
 lsblk 列出块设备
 ####################################
 
-lsblk（list block）列出所有可用块设备的信息，而且还能显示设备之间的依赖关系，但是不会列出 RAM 的信息。
+lsblk（list block）列出所有可用块设备的信息，及设备之间的依赖关系，但是不会列出 RAM 的信息。
 
 .. hint::
 
-    lsblk 命令包含在 util-linux包中，这个包带了几个其它工具，如 dmesg。如果系统中没有 lsblk 命令，请安装 util-linux 包。
+    lsblk 命令包含在 util-linux包中，这个包中还包含 dmesg 等其他工具。如果系统中没有 lsblk 命令，请安装 util-linux 包。
 
 
 命令格式：

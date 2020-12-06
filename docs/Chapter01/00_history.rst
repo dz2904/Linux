@@ -5,7 +5,7 @@ history 命令行历史列表
 
 history 命令保存从该终端会话运行的所有其它命令的列表，然后允许你重放或者重用这些命令，而不用重新输入它们。
 
-可以在用户的家目录下找到 ``.bash_history`` 命令列表记录文件。
+可以在 ``~/.bash_history`` 中查看命令行记录文件。
 
 
 命令格式：
@@ -37,7 +37,7 @@ history 命令保存从该终端会话运行的所有其它命令的列表，然
     ::
 
     # 不输入命令，直接按 <Ctrl+R>  进入搜索模式，输入单词自动匹配最近的历史记录
-    # 提示符会变为 (reverse-i-search)`':
+    # 提示符会变为 (reverse-i-search)，red 为输入字符
     (reverse-i-search)`red‘: cat /etc/redhat-release
 
 
@@ -79,11 +79,17 @@ Shell 中还有几个好用的历史列表命令：
 
     [Linux]$ ls -l Music/
     total 0
+    
+    # 执行上一条命令
     [Linux]$ !!
     ls -l Music/
     total 0
+    
+    # 使用上一条命令的选项和参数
     [Linux]$ ls !*
     ls -l Music/
     total 0
+    
+    # 使用上一条命令的最后一个参数
     [Linux]$ ls !$
     ls Music/

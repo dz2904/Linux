@@ -37,10 +37,8 @@ pwd 命令是 Linux 中最常用的命令之一，它用于显示当前工作路
     [Linux]$ pwd
     /
 
-
-    [Linux]$ cd /lib
-
     # 显示符号链接路径（默认值）
+    [Linux]$ cd /lib
     [[Linux]$ pwd -L
     /lib
 
