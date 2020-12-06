@@ -14,11 +14,6 @@
 
 在 Linux 中很多压缩程序只能针对一个文件进行压缩，当要压缩一大堆文件时，首先得先将一堆文件打成一个包（tar 命令），然后再用压缩程序进行压缩（gzip、bzip2 命令），就是说压缩会分为两步，先打包再压缩，各干个的事。
 
-.. note:: 打包和压缩
-
-    1. 打包：将一大堆文件或目录变成一个总的文件
-    2. 压缩：将一个大的文件通过一些压缩算法变成一个小文件
-
 
 打包
 ************************************
@@ -30,7 +25,7 @@ tar 命令可以将多个文件和目录创建一个档案（归档），tar 最
     * 把一大堆的文件和目录打包成一个 tar 包，便于网络传输。
     * 生成tar包后，再用其它的程序进行压缩。
 
-推荐阅读： :doc:`../Chapter01/00_tar`
+推荐阅读： :ref:`tar 归档命令 <cmd_tar>`
 
 
 压缩
@@ -69,9 +64,9 @@ zip 是一种相当简单的分别压缩每个文件的存档格式。分别压�
 
 .. hint:: 压缩工具对比
 
-- bzip2 gizp 命令会在压缩文件时替换原始文件，tar zip 不会替换
-- 除 bzip2 以外，压缩文件的权限将基于 umask 设置。bzip2 会保留原始文件的权限
-- zip 创建的压缩文件可以在 Windows 及 MacOS 和其他 Unix 系统即解压，兼容性更强
+    - bzip2 gizp 命令会在压缩文件时替换原始文件，tar zip 不会替换
+    - 除 bzip2 以外，压缩文件的权限将基于 umask 设置。bzip2 会保留原始文件的权限
+    - zip 创建的压缩文件可以在 Windows 及 MacOS 和其他 Unix 系统即解压，兼容性更强
 
 
 常用解压/压缩命令
@@ -79,54 +74,54 @@ zip 是一种相当简单的分别压缩每个文件的存档格式。分别压�
 
 **tar**
 
-|压缩| tar -cvf FileName.tar DirName
-|解压| tar -xvf FileName.tar
+:压缩: tar -cvf FileName.tar DirName
+:解压: tar -xvf FileName.tar
 
 
 **.gz**
 
-|压缩| gzip FileName
-|解压1| gunzip FileName.gz
-|解压2| gzip -d FileName.gz
+:压缩: gzip FileName
+:解压1: gunzip FileName.gz
+:解压2: gzip -d FileName.gz
 
 
 **.tar.gz 或 .tgz**
 
-|压缩| tar -zcvf FileName.tar.gz DirName
-|解压| tar -zxvf FileName.tar.gz
+:压缩: tar -zcvf FileName.tar.gz DirName
+:解压: tar -zxvf FileName.tar.gz
 
 
 **.bz2**
 
-|压缩| bzip2 -z FileName
-|解压1| bzip2 -d FileName.bz2
-|解压2| bunzip2 FileName.bz2
+:压缩: bzip2 -z FileName
+:解压1: bzip2 -d FileName.bz2
+:解压2: bunzip2 FileName.bz2
 
 
 **.tar.bz2**
 
-|压缩| tar -jcvf FileName.tar.bz2 DirName
-|解压| tar -jxvf FileName.tar.bz2
+:压缩: tar -jcvf FileName.tar.bz2 DirName
+:解压: tar -jxvf FileName.tar.bz2
 
 
 **.Z**
 
-|压缩| compress FileName
-|解压| uncompress FileName.Z
+:压缩: compress FileName
+:解压: uncompress FileName.Z
 
 
 **.tar.Z**
 
-|压缩| tar -Zcvf FileName.tar.Z DirName
-|解压| tar -Zxvf FileName.tar.Z
+:压缩: tar -Zcvf FileName.tar.Z DirName
+:解压: tar -Zxvf FileName.tar.Z
 
 
 **.zip**
 
-|压缩| zip FileName.zip DirName
-|解压| unzip FileName.zip
+:压缩: zip FileName.zip DirName
+:解压: unzip FileName.zip
 
 
 **.rar**
-|压缩| rar -a FileName.rar DirName 
-|解压| rar -x FileName.rar
+:压缩: rar -a FileName.rar DirName 
+:解压: rar -x FileName.rar

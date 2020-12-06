@@ -47,10 +47,8 @@ CentOS 设置网口静态 IP
     [Linux]# nmcli c reload
 
 
-.. note::
+.. note:: 其它配置说明：
 
-    其它配置说明：
-    
     - TYPE=Ethernet    网卡类型：为以太网
     - PROXY_METHOD=none    代理方式：关闭状态
     - BROWSER_ONLY=no    只是浏览器：否
