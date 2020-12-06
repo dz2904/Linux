@@ -123,7 +123,7 @@ home 目录， ``&`` 在后台运行程序， ``\\`` 转移字符等。
 
 .. attention::
 
-    每条执行过的命令都会添加到历史列表中，包括错误的命令以及 ``history`` 命令本身。
+    每条执行过的命令都会添加到历史列表中，包括错误的命令以及 :ref:`history <cmd_history>` 命令本身。
 
 可以设置 HISTSIZE 环境变量来指定历史列表的大小，即历史列表中可以存放历史命令的条目。
 
@@ -179,7 +179,7 @@ Shell 中可以使用 <Tab> 键自动补全命令、路径及文件名、环境�
 
 别名允许用户只输入一个单词就运行任意一个命令或一组命令（包括命令选项和文件名）。可以将别名看作是命令的快捷方式（就像是软链接），也可以将别名看作是缩写。使用别名可以在命令行中减少输入的时间，使工作更流畅，同时增加生产率。
 
-``alias`` 命令用于创建临时的别名，在设置别名后，只在当前登录会话中有效。如果退出 Shell 或重启系统后，别名就会消失。如果想让别名永久生效，可以将别名定义写入配置文件 ``~/.bashrc`` 中。不加选项和参数执行 ``alias`` 命令会显示所有已定义的别名列表。 ``unalias`` 命令用于删除别名。
+:ref:`alias <cmd_alias>` 命令用于创建临时的别名，在设置别名后，只在当前登录会话中有效。如果退出 Shell 或重启系统后，别名就会消失。如果想让别名永久生效，可以将别名定义写入配置文件 ``~/.bashrc`` 中。不加选项和参数执行 :ref:`alias <cmd_alias>`  命令会显示所有已定义的别名列表。 :ref:`unalias <cmd_unalias>`  命令用于删除别名。
 
 ::
 
@@ -216,32 +216,32 @@ Shell 有很多内置在其源代码中的命令。这些命令是内置的，�
 
 Bash 常用的内置命令
 
-- alias： 显示和创建已有命令的别名。
-- bg： 把作业放到后台。
-- cd [arg]： 改变目录，如果不带参数，则回到主目录，带参数则切换到参数所指的目录。
-- disown： 从作业表中删除一个活动作业。
-- echo [args]： 显示 args 并换行。
-- eval [args]： 把 args 读入 Shell，并执行产生的命令。
-- exec command： 运行命令，替换掉当前 Shell。
-- exit [n]： 以状态 n 退出 Shell。
-- export [var]：使变量可被子 Shell 识别。
-- fc： 历史的修改命令，用于编辑历史命令。
-- fg： 把后台作业放到前台。
-- getopts： 解析并处理命令行选项。
-- help [command]： 显示关于内置命令的有用信息。如果指定了一个命令，则将显示该命令的详细信息。
-- history： 显示带行号的命令历史列表。
-- jobs： 显示放到后台的作业。
-- kill [-signal process]： 向由 PID 号或作业号指定的进程发送信号。
-- logout： 退出登录 Shell。
-- pwd： 打印出当前的工作目录。
-- read [var]： 从标准输入读取一行，保存到变量 var 中。
-- set： 设置选项和位置参量。
-- stop pid： 暂停第 pid 号进程的运行。
-- suspend： 终止当前 Shell 的运行（对登录 Shell 无效）。
-- times： 显示由当前 Shell 启动的进程运行所累计用户时间和系统时间。
-- type [command]： 显示命令的类型，例如：pwd 是 Shell 的一个内置命令。
-- unalias： 取消所有的命令别名设置。
-- wait [pid#n]： 等待 pid 号为 n 的后台进程结束，并报告它的结束状态。
+- :ref:`alias <cmd_alias>` ：显示和创建已有命令的别名。
+- :ref:`bg <cmd_bg>` ：把作业放到后台。
+- :ref:`cd [arg] <cmd_cd>` ：改变目录，如果不带参数，则回到主目录，带参数则切换到参数所指的目录。
+- :ref:`disown <cmd_disown>` ：从作业表中删除一个活动作业。
+- :ref:`echo [args] <cmd_echo>` ：显示 args 并换行。
+- :ref:`eval [args] <cmd_eval>` ：把 args 读入 Shell，并执行产生的命令。
+- :ref:`exec command <cmd_exec>` ：运行命令，替换掉当前 Shell。
+- :ref:`exit [n] <cmd_exit>` ：以状态 n 退出 Shell。
+- :ref:`export [var] <cmd_export>` ：使变量可被子 Shell 识别。
+- :ref:`fc <cmd_fc>` ：历史的修改命令，用于编辑历史命令。
+- :ref:`fg <cmd_fg>` ：把后台作业放到前台。
+- :ref:`getopts <cmd_getopts>` ：解析并处理命令行选项。
+- :ref:`help [command] <cmd_help>` ：显示关于内置命令的有用信息。如果指定了一个命令，则将显示该命令的详细信息。
+- :ref:`history <cmd_history>` ：显示带行号的命令历史列表。
+- :ref:`jobs <cmd_jobs>` ：显示放到后台的作业。
+- :ref:`kill [-signal process] <cmd_kill>` ：向由 PID 号或作业号指定的进程发送信号。
+- :ref:`logout <cmd_logout>` ：退出登录 Shell。
+- :ref:`pwd <cmd_pwd>` ：打印出当前的工作目录。
+- :ref:`read [var] <cmd_read>` ：从标准输入读取一行，保存到变量 var 中。
+- :ref:`set <cmd_set>` ：设置选项和位置参量。
+- :ref:`stop pid <cmd_pid>` ：暂停第 pid 号进程的运行。
+- :ref:`suspend <cmd_suspend>` ：终止当前 Shell 的运行（对登录 Shell 无效）。
+- :ref:`times <cmd_times>` ：显示由当前 Shell 启动的进程运行所累计用户时间和系统时间。
+- :ref:`type [command] <cmd_type>` ：显示命令的类型，例如：pwd 是 Shell 的一个内置命令。
+- :ref:`unalias <cmd_unalias>` ：取消所有的命令别名设置。
+- :ref:`wait [pid#n] <cmd_wait>` ：等待 pid 号为 n 的后台进程结束，并报告它的结束状态。
 
 .. attention::
 
