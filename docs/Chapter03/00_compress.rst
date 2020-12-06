@@ -64,76 +64,69 @@ zip 是一个应用广泛的跨平台的打包+压缩工具，压缩文件的扩
 
 zip 是一种相当简单的分别压缩每个文件的存档格式。分别压缩文件允许不读取额外的数据而检索独立的文件；理论上，允许对不同的文件使用不同的算法。
 
-推荐阅读： :doc:`../Chapter01/00_zip`
+- 推荐阅读： :doc:`../Chapter01/00_zip`
+- 推荐阅读： :doc:`../Chapter01/00_unzip`
 
-推荐阅读： :doc:`../Chapter01/00_unzip`
+.. hint:: 压缩工具对比
+
+- bzip2 gizp 命令会在压缩文件时替换原始文件，tar zip 不会替换
+- 除 bzip2 以外，压缩文件的权限将基于 umask 设置。bzip2 会保留原始文件的权限
+- zip 创建的压缩文件可以在 Windows 及 MacOS 和其他 Unix 系统即解压，兼容性更强
 
 
-常见解压/压缩命令
-******************************
+常用解压/压缩命令
+************************************
 
 **tar**
 
-打包：tar -cvf FileName.tar DirName
-
-解包：tar -xvf FileName.tar
+|压缩| tar -cvf FileName.tar DirName
+|解压| tar -xvf FileName.tar
 
 
 **.gz**
 
-压缩：gzip FileName
-
-解压1：gunzip FileName.gz
-
-解压2：gzip -d FileName.gz
+|压缩| gzip FileName
+|解压1| gunzip FileName.gz
+|解压2| gzip -d FileName.gz
 
 
 **.tar.gz 或 .tgz**
 
-压缩：tar -zcvf FileName.tar.gz DirName
-
-解压：tar -zxvf FileName.tar.gz
+|压缩| tar -zcvf FileName.tar.gz DirName
+|解压| tar -zxvf FileName.tar.gz
 
 
 **.bz2**
 
-压缩： bzip2 -z FileName
-
-解压1：bzip2 -d FileName.bz2
-
-解压2：bunzip2 FileName.bz2
+|压缩| bzip2 -z FileName
+|解压1| bzip2 -d FileName.bz2
+|解压2| bunzip2 FileName.bz2
 
 
 **.tar.bz2**
 
-压缩：tar -jcvf FileName.tar.bz2 DirName
-
-解压：tar -jxvf FileName.tar.bz2
+|压缩| tar -jcvf FileName.tar.bz2 DirName
+|解压| tar -jxvf FileName.tar.bz2
 
 
 **.Z**
 
-压缩：compress FileName
-
-解压：uncompress FileName.Z
+|压缩| compress FileName
+|解压| uncompress FileName.Z
 
 
 **.tar.Z**
 
-压缩：tar -Zcvf FileName.tar.Z DirName
-
-解压：tar -Zxvf FileName.tar.Z
+|压缩| tar -Zcvf FileName.tar.Z DirName
+|解压| tar -Zxvf FileName.tar.Z
 
 
 **.zip**
 
-压缩：zip FileName.zip DirName
-
-解压：unzip FileName.zip
+|压缩| zip FileName.zip DirName
+|解压| unzip FileName.zip
 
 
 **.rar**
-
-压缩：rar -a FileName.rar DirName 
-
-解压：rar -x FileName.rar
+|压缩| rar -a FileName.rar DirName 
+|解压| rar -x FileName.rar

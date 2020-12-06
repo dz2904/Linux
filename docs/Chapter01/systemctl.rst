@@ -1,4 +1,6 @@
-systemd 基本工具
+.. _cmd_systemctl:
+
+systemctl 基本工具
 #############################
 
 监视和控制 systemd 的主要命令是 systemctl。该命令可用于查看系统状态和管理系统及服务。

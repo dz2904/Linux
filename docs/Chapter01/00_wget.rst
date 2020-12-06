@@ -1,7 +1,9 @@
-﻿wget 下载文件
+﻿.. _cmd_wget:
+
+wget 下载文件
 ####################################
 
-wget 是一个在命令行下下载文件的工具。wget 支持 HTTP，HTTPS 和 FTP 协议，还可使用 HTTP 代理。
+wget 是在命令行中下载文件的工具。wget 支持 HTTP，HTTPS 和 FTP 协议，还可使用 HTTP 代理。
 
 wget 可以跟踪 HTML 页面上的链接依次下载来创建远程服务器的本地副本，常被称作“递归下载”。在递归下载的时候，wget 遵循 Robot Exclusion 标准（robots.txt）。wget 非常稳定，在带宽有限和不稳定的网络中有很强的适应性。当下载文件失败时，wget 会不断的尝试继续下载，直到整个文件下载完毕。
 
@@ -76,10 +78,10 @@ wget 可以跟踪 HTML 页面上的链接依次下载来创建远程服务器的
     [Linux]$ wget https://wordpress.org/latest.tar.gz
 
     # 下载文件并重命名，默认以最后一个 / 后面的字符来命名
-    [Linux]$ wget -O wordpress.html http://www.baidu.com/baidu?&word=wordpress
+    [Linux]$ wget -O wordpress.tgz https://wordpress.org/latest.tar.gz
 
     # 断点续传，继续下载中断的文件
-    [Linux]$ wget -c https://wordpress.org/latest.tar.gz
+    [Linux]$ wget -c
 
     # 后台下载
     [Linux]$ wget -b https://wordpress.org/latest.tar.gz
@@ -102,12 +104,12 @@ wget 可以跟踪 HTML 页面上的链接依次下载来创建远程服务器的
 
 ::
 
-    [Linux]$ wget --mirror -p --convert-links -P local/ URL
+    [Linux]$ wget -mirror -p --convert-links -page-requisites URL
 
-* -miror：开户镜像下载
-* -p：下载所有为了 html 页面显示正常的文件
+* -m：镜像下载
+* -p：下载所有 html 页面显示正常的文件
 * -convert-links：下载后，转换成本地的链接
-* -P ：保存所有文件和目录到本地指定目录
+* -page-requisites：下载额外的东西，如样式表
 
 2. 下载指定格式文件
 

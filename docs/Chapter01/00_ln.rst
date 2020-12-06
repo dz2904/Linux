@@ -1,0 +1,105 @@
+.. _cmd_ln:
+
+ln 创建文件链接
+####################################
+
+ln 用于为文件和目录创建一个链接，在 Linux 中有两种链接的概念： :doc:`../Chapter03/00_link` 。
+
+命令格式：
+************************************
+
+.. highlight:: none
+
+::
+
+    ln [OPTION]... [-T] TARGET LINK_NAME
+    ln [OPTION]... TARGET
+    ln [OPTION]... TARGET... DIRECTORY
+    ln [OPTION]... -t DIRECTORY TARGET...
+
+
+常用选项：
+************************************
+
+::
+
+    -f, --force
+        强行建立文件或目录的连接，不论文件或目录是否存在
+
+    -i, --interactive
+        在覆盖既有文件之前先询问
+
+    -n, --no-dereference 
+        把符号链接视为一般目录（链接到符号链接时必须）
+
+    -s, --symbolic
+        建立软链接，而非默认的硬连接
+
+
+
+使用实例：
+************************************
+
+::
+
+    # 在当前目录，创建一个硬链接:
+    [Linux]$ ln 1.txt 0.txt
+    [Linux]$ ls -li
+    total 0
+    12189699 -rw-rw-r-- 2 glenn glenn 0 Dec  6 08:54 0.txt
+    12189699 -rw-rw-r-- 2 glenn glenn 0 Dec  6 08:54 1.txt
+
+
+    # 在指定目录，创建一个同名的硬链接:
+    [Linux]$ ln 1.txt /media/
+    [Linux]$ ls -li /media
+    total 0
+    12189699 -rw-rw-r-- 3 glenn glenn 0 Dec  6 08:54 1.txt
+
+
+    # 在当前目录，创建一个软链接:
+    [Linux]$ ln -s 1.txt z.txt
+    [Linux]$ ls -li
+    total 0
+    12189699 -rw-rw-r-- 3 glenn glenn 0 Dec  6 08:54 0.txt
+    12189699 -rw-rw-r-- 3 glenn glenn 0 Dec  6 08:54 1.txt
+    12189708 lrwxrwxrwx 1 glenn glenn 5 Dec  6 09:04 z.txt -> 1.txt
+
+
+    # 更新符号连接
+    [Linux]$ ls -l
+    total 4
+    lrwxrwxrwx 1 glenn glenn    9 Dec  6 09:10 3.txt -> doc/3.txt
+    drwxrwxr-x 2 glenn glenn 4096 Dec  6 09:07 doc
+
+    [Linux]$ ln -sf doc/5.txt 3.txt
+
+    [Linux]$ ls -l
+    total 4
+    lrwxrwxrwx 1 glenn glenn    9 Dec  6 09:10 3.txt -> doc/5.txt
+    drwxrwxr-x 2 glenn glenn 4096 Dec  6 09:07 doc
+
+
+.. hint:: 删除目录软链接
+
+    ::
+
+        [Linux]$ ln -s doc c
+        [Linux]$ ls -l
+        lrwxrwxrwx  1 glenn glenn    4 Dec  6 10:04 c -> doc/
+        drwxrwxr-x  2 glenn glenn 4096 Dec  6 09:07 doc/
+
+        # 错误的删除方式
+        # 软链接并没有删除，删除的是 doc 目录下的所有文件
+        [Linux]$ rm -rf c/
+        [Linux]$ ls -l
+        lrwxrwxrwx 1 glenn glenn    3 Dec  6 10:05 c -> doc
+        drwxrwxr-x 2 glenn glenn 4096 Dec  6 10:06 doc
+        Linux]$ ls -l doc/
+        total 0
+
+        # 正确的删除方式
+        # 删除软链接时，不能加 / 符号
+        [Linux]$ rm -rf c
+        [Linux]$ ls -l
+        drwxrwxr-x 2 glenn glenn 4096 Dec  6 10:06 doc

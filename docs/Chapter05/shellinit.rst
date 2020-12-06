@@ -241,7 +241,7 @@ shell 只定义了一个非常简单的编程语言，所以，如果你的脚�
 	
 这样写是合法的，但注意，第二次赋值的时候不能写 $your_name="alibaba"，使用变量的时候才加美元符。
 
-## 注释
+注释
 ************************************
 
 以“#”开头的行就是注释，会被解释器忽略。
@@ -254,7 +254,7 @@ sh 里没有多行注释，只能每一行加一个 # 号。就像这样：
 ::
 
 	#--------------------------------------------
-	# 这是一个自动打ipa的脚本，基于webfrogs的ipa-build书写：https://github.com/webfrogs/xcode_shell/blob/master/ipa-build
+	# 这是一个自动打ipa的脚本，基于webfrogs的ipa-build书写
 	
 	# 功能：自动为etao ios app打包，产出物为14个渠道的ipa包
 	# 特色：全自动打包，不需要输入任何参数
@@ -328,7 +328,9 @@ sh 里没有多行注释，只能每一行加一个 # 号。就像这样：
 ::
 
 	string="alibaba is a great company"
-	echo `expr index "$string" is`#输出：3，这个语句的意思是：找出字母i在这名话中的位置，要在linux下运行，mac下会报错
+	# 找出字母 i 的位置
+	echo `expr index "$string" is`
+	3
 
 **更多** 参见本文档末尾的参考资料中[Advanced Bash-Scripting Guid Chapter 10.1](http://tldp.org/LDP/abs/html/string-manipulation.html)
 
