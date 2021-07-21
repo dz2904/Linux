@@ -25,27 +25,64 @@ WPA 或 WPA2 PSK 加密       iw/iwconfig + wpa_supplicant       ip/dhcpcd/dhcli
                       这些工具会自动安装手动配置需要的工具。
 =================   ==================
 
-现在大部分无线网络使用 WPA/WPA2 加密，所以需要配置 wpa_supplicant。
+wpa_supplicant
+************************************
 
-在 wpa_supplicant 源码目录下，有一个参考的配置文件 wpa_supplicant.conf，几乎包含了所有的配置项。
-我们的配置文件不需要这么复杂，只需在无线网络启动后自动连接到预先设置的 ap 就可以了。如果预先设置了多个 ap 则需要为网络设置优先级参数 priority（0-255 的整数，数值越大，级别越高）。
+wpa_supplicant 不支持所有的驱动。请浏览 wpa_supplicant 网站获得它所支持的驱动列表。另外，wpa_supplicant 目前只能连接到已经配置好 ESSID 的无线网络。
 
-新建配置文件 ``/etc/wpa_supplicant/wpa_supplicant.conf`` ，内容如下：
+.. note::
+
+    其实 wpa_supplicant 还有一个前端工具 wpa_cli。wpa_supplicant 和 wpa_cli 的关系就是服务和客户端的关系：后台运行 wpa_supplicant，使用 wpa_cli 来搜索、设置、和连接网络。不过 wpa_cli 并不是必须的软件。
+
+现在大部分无线网络使用 WPA/WPA2 加密，最少需要配置 wpa_supplicant 才能连接网络。
+
+在 Debian 环境中，需要在 ``/etc/network/interfaces`` 中配置 wpa_supplicant 的配置文件路径。
 
 .. highlight:: none
 
 ::
 
+    # 开机自动启动网络并使用 dhcp 配置网络 IP
+    # wlan0 为系统无线网卡名
+    auto wlp1s0
+    iface wlp1s0 inet dhcp
+
+    # wpa_supplicant 的配置文件路径
+    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+
+
+我们的配置文件不需要这么复杂，只需在无线网络启动后自动连接到预先设置的 ap 就可以了。
+
+新建配置文件 ``/etc/wpa_supplicant/wpa_supplicant.conf`` ，可以加入一些配置项：
+
+::
+
+    # 可有可无，启用 wpa_cli 关闭 wpa_supplicant
     ctrl_interface=/var/run/wpa_supplicant
 
-    update_config=1
+    # 可有可无，只有 root 用户能读取 WPA 配置
+    ctrl_interface_group=0
 
+    # 可有可无，启用 wpa_supplicant 扫描和选择 AP
+    ap_scan=1
+
+将连接 wifi 的名称和密码写入配置文件，如果有多个 ap 则还需要手动为网络设置优先级参数 priority（0-255 的整数，数值越大，级别越高）。
+
+::
+
+    [Linux]$ wpa_supplicant wifi名称  wifi密码 >> /etc/wpa_supplicant/wpa_supplicant.conf
+    [Linux]$ cat /etc/wpa_supplicant/wpa_supplicant.conf
     network={
-
-    ssid="LZ205"   # wifi 名称
-    psk="20100208"   # 密码
-    priority=2
-
+            ssid="WiFi2021"
+            #psk="Xy2904Sy"
+            psk=c92fe5b5f76fa8482e1c131ec4e75a5fc98b3ebea703493732853dfa1725b058
+            priority=2
+    }
+    network={
+            ssid="glenn"
+            #psk="1234@4321"
+            psk=9b5b71e27b1976af9aba2b27fc8473ac0915e39da62dcf497bea93449dfa9990
+            priority=99
     }
 
 
@@ -53,13 +90,13 @@ WPA 或 WPA2 PSK 加密       iw/iwconfig + wpa_supplicant       ip/dhcpcd/dhcli
 
 ::
 
-    # ip link set dev wlp6s0 up
-    # wpa_supplicant -B -i wlp6s0 -c /etc/wpa_supplicant/wpa_supplicant.conf
-    # dhcpcd wlp6s0
+    [Linux]$ ip link set dev wlp6s0 up
+    [Linux]$ wpa_supplicant -B -i wlp6s0 -c /etc/wpa_supplicant/wpa_supplicant.conf
+    [Linux]$ dhcpcd wlp6s0
 
     要使用静态 IP，请将 dhcpcd 命令替换为：
-    # ip addr add 192.168.0.10/24 broadcast 192.168.0.255 dev wlp6s0
-    # ip route add default via 192.168.0.1
+    [Linux]$ ip addr add 192.168.0.10/24 broadcast 192.168.0.255 dev wlp6s0
+    [Linux]$ ip route add default via 192.168.0.1
 
 
 请注意一点，对无线网络的配置是全局性的，而非针对具体的接口。
