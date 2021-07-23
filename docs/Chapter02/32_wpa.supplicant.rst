@@ -25,6 +25,7 @@ WPA 或 WPA2 PSK 加密       iw/iwconfig + wpa_supplicant       ip/dhcpcd/dhcli
                       这些工具会自动安装手动配置需要的工具。
 =================   ==================
 
+
 wpa_supplicant 最小配置
 ************************************
 
@@ -61,11 +62,16 @@ wpa_supplicant 最小配置
     # 可有可无，启用 wpa_supplicant 扫描和选择 AP
     ap_scan=1
 
-将连接 wifi 的名称和密码写入配置文件，如果有多个 AP 还需要手动为网络设置优先级参数 priority（0-255 的整数，数值越大级别越高）。
+使用 wpa_supplicant 命令将连接 wifi 的名称和密码写入配置文件。
 
 ::
 
     [Linux]$ wpa_supplicant wifi名称  wifi密码 >> /etc/wpa_supplicant/wpa_supplicant.conf
+
+如果配置文件中有多个 AP 还可以手动为网络设置优先级参数 priority（0-255 的整数，数值越大级别越高）。
+
+::
+
     [Linux]$ cat /etc/wpa_supplicant/wpa_supplicant.conf
     network={
             ssid="WiFi2021"
@@ -95,6 +101,7 @@ wpa_supplicant 最小配置
 
 
 请注意一点，对无线网络的配置是全局性的，而非针对具体的接口。
+
 
 关于 WPA：
 ************************************
