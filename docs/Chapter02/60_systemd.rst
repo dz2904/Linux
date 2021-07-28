@@ -69,22 +69,22 @@ Unit 一共分为 12 种。
 ::
 
     # 立即启动一个服务
-    [Linux]# sudo systemctl start apache.service
+    [Linux]# systemctl start apache.service
 
     # 立即停止一个服务
-    [Linux]# sudo systemctl stop apache.service
+    [Linux]# systemctl stop apache.service
 
     # 重启一个服务
-    [Linux]# sudo systemctl restart apache.service
+    [Linux]# systemctl restart apache.service
 
     # 杀死一个服务的所有子进程
-    [Linux]# sudo systemctl kill apache.service
+    [Linux]# systemctl kill apache.service
 
     # 重新加载一个服务的配置文件
-    [Linux]# sudo systemctl reload apache.service
+    [Linux]# systemctl reload apache.service
 
     # 重载所有修改过的配置文件
-    [Linux]# sudo systemctl daemon-reload
+    [Linux]# systemctl daemon-reload
 
     # 显示某个 Unit 的所有底层参数
     [Linux]# systemctl show httpd.service
@@ -107,7 +107,7 @@ Systemd 默认从目录 ``/etc/systemd/system/`` 读取配置文件。但是，�
 
 .. note::
 
-    其实 /usr/lib/systemd/system/ 目录中的文件是 /lib/systemd/system 目录下文件的硬链接，可以使用 ``ls -li`` 命令查看对比两个文件。
+    在系统配置文件中，还有一个 /lib/systemd/system/ 目录，其实 /usr/lib/systemd/system/ 目录中的文件是 /lib/systemd/system 目录下文件的硬链接，可以使用 ``ls -li`` 命令查看对比两个文件。
 
 
 ``systemctl enable`` 命令用于在上面两个目录之间，建立符号链接关系。
@@ -122,7 +122,7 @@ Systemd 默认从目录 ``/etc/systemd/system/`` 读取配置文件。但是，�
 
 与之对应的， ``systemctl disable`` 命令用于在两个目录之间，撤销符号链接关系，相当于撤销开机启动。
 
-配置文件的后缀名默认为 ``.service`` ，比如 sshd.socket。可以省略后缀名，所以 sshd 会被理解成 sshd.service。
+配置文件的后缀名默认为 ``.service`` ，比如 sshd.socket。在使用 ``systemctl`` 命令时可以省略后缀名，所以 sshd 会被理解成 sshd.service。
 
 ``systemctl list-unit-files`` 命令用于列出所有配置文件。
 
@@ -131,11 +131,14 @@ Systemd 默认从目录 ``/etc/systemd/system/`` 读取配置文件。但是，�
     # 列出所有配置文件，命令输出一个列表。
     $ systemctl list-unit-files
 
-    UNIT FILE              STATE
-    chronyd.service        enabled
-    clamd@.service         static
-    clamd@scan.service     disabled
-
+    UNIT FILE                                      STATE
+    proc-sys-fs-binfmt_misc.automount              static
+    systemd-ask-password-wall.path                 static
+    apt-daily-upgrade.service                      static
+    apt-daily.service                              static
+    autovt@.service                                enabled
+    bootlogd.service                               masked
+    ...
 
 这个列表显示每个配置文件的状态，一共有四种。
 
@@ -382,6 +385,6 @@ loginctl 命令用于查看当前登录的用户。
     [Linux]# loginctl list-users
 
     # 列出显示指定用户的信息
-    [Linux]# loginctl show-user ruanyf
+    [Linux]# loginctl show-user name
 
 
