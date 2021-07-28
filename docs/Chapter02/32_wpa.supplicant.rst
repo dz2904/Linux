@@ -62,7 +62,8 @@ wpa_supplicant 最小配置
     # 可有可无，启用 wpa_supplicant 扫描和选择 AP
     ap_scan=1
 
-使用 wpa_supplicant 命令将连接 wifi 的名称和密码写入配置文件。
+使用 wpa_supplicant 命令将连接 wifi 的名称和密码添加到配置文件。wpa_supplicant
+会将密码转换成密文，如果更改了密码这一步不能单纯的手动修改文件。
 
 ::
 
