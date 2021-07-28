@@ -1,3 +1,5 @@
+.. _cfg_systemd:
+
 Systemd 进程管理工具
 ############################
 
@@ -18,18 +20,31 @@ systemd 所管理的所有系统资源都称作 Unit（单位），通过 system
 
 Unit 一共分为 12 种。
 
-- Service unit：系统服务
-- Target unit：多个 Unit 构成的一个组
-- Device Unit：硬件设备
-- Mount Unit：文件系统的挂载点
-- Automount Unit：自动挂载点
-- Path Unit：文件或路径
+- Service unit：系统服务以 ``.service`` 结尾
+- Target unit：多个 Unit 构成的一个组以 ``.target`` 结尾
+- Device Unit：硬件设备以 ``.device`` 结尾
+- Mount Unit：文件系统的挂载点以 ``.mount`` 结尾
+- Automount Unit：自动挂载点以 ``.mount`` 结尾
+- Path Unit：文件或路径以 ``.path`` 结尾
 - Scope Unit：不是由 Systemd 启动的外部进程
 - Slice Unit：进程组
 - Snapshot Unit：Systemd 快照，可以切回某个快照
-- Socket Unit：进程间通信的 socket
-- Swap Unit：swap 文件
-- Timer Unit：定时器
+- Socket Unit：进程间通信的 socket，以 ``.sockets`` 结尾
+- Swap Unit：swap 文件以 ``.swap`` 结尾
+- Timer Unit：定时器以 ``.timer`` 结尾
+
+使用 systemctl 控制单元时，通常不需要使用单元文件的全名（例如 ``sshd.service`` ），只使用简写的方式即可，Systemd 会自动补全文件的后缀名。
+
+* 无扩展名时默认以 ``.service`` 为扩展名。例如 netcfg 和 netcfg.service 是等价的。
+* 挂载点会自动转化为相应的 ``.mount`` 单元。例如 /home 等价于 home.mount 。
+* 设备会自动转化为相应的 ``.device`` 单元，所以 /dev/sda2 等价于 dev-sda2.device 。
+
+.. warning::
+
+    有一些单元的名称包含一个 ``@`` 标记（例如：name@string.service ），这意味着它是模板单元 ``name@.service`` 的一个实例。 string 被称作实例标识符，在 systemctl 调用模板单元时，会将其当作一个参数传给模板单元，模板单元会使用这个传入的参数代替模板中的 ``%I`` 指示符。
+
+    在实例化之前，systemd 会先检查 ``name@string.suffix`` 文件是否存在（如果存在，就直接使用这个文件）。大多数情况下，包含 ``@`` 标记都意味着这个文件是模板。如果一个模板单元没有实例化就调用，该调用会返回失败，因为模板单元中的 ``%I`` 指示符没有被替换。
+
 
 ``systemctl list-units`` 命令可以查看当前系统的所有 Unit 。
 
@@ -122,14 +137,12 @@ Systemd 默认从目录 ``/etc/systemd/system/`` 读取配置文件。但是，�
 
 与之对应的， ``systemctl disable`` 命令用于在两个目录之间，撤销符号链接关系，相当于撤销开机启动。
 
-配置文件的后缀名默认为 ``.service`` ，比如 sshd.socket。在使用 ``systemctl`` 命令时可以省略后缀名，所以 sshd 会被理解成 sshd.service。
-
 ``systemctl list-unit-files`` 命令用于列出所有配置文件。
 
 ::
 
     # 列出所有配置文件，命令输出一个列表。
-    $ systemctl list-unit-files
+    [Linux]# systemctl list-unit-files
 
     UNIT FILE                                      STATE
     proc-sys-fs-binfmt_misc.automount              static
@@ -162,21 +175,21 @@ Target
 ::
 
     # 查看当前系统的所有 Target
-    $ systemctl list-unit-files --type=target
+    [Linux]# systemctl list-unit-files --type=target
 
     # 查看一个 Target 包含的所有 Unit
-    $ systemctl list-dependencies multi-user.target
+    [Linux]# systemctl list-dependencies multi-user.target
 
     # 查看启动时的默认 Target
-    $ systemctl get-default
+    [Linux]# systemctl get-default
 
     # 设置启动时的默认 Target
-    $ sudo systemctl set-default multi-user.target
+    [Linux]# systemctl set-default multi-user.target
 
     # 切换 Target 时，默认不关闭前一个 Target 启动的进程，
-    # systemctl isolate 命令改变这种行为，
+    [Linux]# systemctl isolate 命令改变这种行为，
     # 关闭前一个 Target 里面所有不属于后一个 Target 的进程
-    $ sudo systemctl isolate multi-user.target
+    [Linux]# systemctl isolate multi-user.target
 
 
 日志管理
@@ -184,60 +197,60 @@ Target
 
 Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用journalctl一个命令，查看所有日志（内核日志和应用日志）。日志的配置文件是/etc/systemd/journald.conf。
 
-journalctl功能强大，用法非常多。
+:ref:`journalctl <cmd_journalctl>` 功能强大，用法非常多。
 
 ::
 
     # 查看所有日志（默认情况下 ，只保存本次启动的日志）
-    $ sudo journalctl
+    [Linux]# journalctl
 
     # 查看内核日志（不显示应用日志）
-    $ sudo journalctl -k
+    [Linux]# journalctl -k
 
     # 查看系统本次启动的日志
-    $ sudo journalctl -b
-    $ sudo journalctl -b -0
+    [Linux]# journalctl -b
+    [Linux]# journalctl -b -0
 
     # 查看上一次启动的日志（需更改设置）
-    $ sudo journalctl -b -1
+    [Linux]# journalctl -b -1
 
     # 查看指定时间的日志
-    $ sudo journalctl --since="2012-10-30 18:17:16"
-    $ sudo journalctl --since "20 min ago"
-    $ sudo journalctl --since yesterday
-    $ sudo journalctl --since "2015-01-10" --until "2015-01-11 03:00"
-    $ sudo journalctl --since 09:00 --until "1 hour ago"
+    [Linux]# journalctl --since="2012-10-30 18:17:16"
+    [Linux]# journalctl --since "20 min ago"
+    [Linux]# journalctl --since yesterday
+    [Linux]# journalctl --since "2015-01-10" --until "2015-01-11 03:00"
+    [Linux]# journalctl --since 09:00 --until "1 hour ago"
 
     # 显示尾部的最新10行日志
-    $ sudo journalctl -n
+    [Linux]# journalctl -n
 
     # 显示尾部指定行数的日志
-    $ sudo journalctl -n 20
+    [Linux]# journalctl -n 20
 
     # 实时滚动显示最新日志
-    $ sudo journalctl -f
+    [Linux]# journalctl -f
 
     # 查看指定服务的日志
-    $ sudo journalctl /usr/lib/systemd/systemd
+    [Linux]# journalctl /usr/lib/systemd/systemd
 
     # 查看指定进程的日志
-    $ sudo journalctl _PID=1
+    [Linux]# journalctl _PID=1
 
     # 查看某个路径的脚本的日志
-    $ sudo journalctl /usr/bin/bash
+    [Linux]# journalctl /usr/bin/bash
 
     # 查看指定用户的日志
-    $ sudo journalctl _UID=33 --since today
+    [Linux]# journalctl _UID=33 --since today
 
     # 查看某个 Unit 的日志
-    $ sudo journalctl -u nginx.service
-    $ sudo journalctl -u nginx.service --since today
+    [Linux]# journalctl -u nginx.service
+    [Linux]# journalctl -u nginx.service --since today
 
     # 实时滚动显示某个 Unit 的最新日志
-    $ sudo journalctl -u nginx.service -f
+    [Linux]# journalctl -u nginx.service -f
 
     # 合并显示多个 Unit 的日志
-    $ journalctl -u nginx.service -u php-fpm.service --since today
+    [Linux]# journalctl -u nginx.service -u php-fpm.service --since today
 
     # 查看指定优先级（及其以上级别）的日志，共有8级
     # 0: emerg
@@ -248,26 +261,26 @@ journalctl功能强大，用法非常多。
     # 5: notice
     # 6: info
     # 7: debug
-    $ sudo journalctl -p err -b
+    [Linux]# journalctl -p err -b
 
     # 日志默认分页输出，--no-pager 改为正常的标准输出
-    $ sudo journalctl --no-pager
+    [Linux]# journalctl --no-pager
 
     # 以 JSON 格式（单行）输出
-    $ sudo journalctl -b -u nginx.service -o json
+    [Linux]# journalctl -b -u nginx.service -o json
 
     # 以 JSON 格式（多行）输出，可读性更好
-    $ sudo journalctl -b -u nginx.serviceqq
+    [Linux]# journalctl -b -u nginx.serviceqq
      -o json-pretty
 
     # 显示日志占据的硬盘空间
-    $ sudo journalctl --disk-usage
+    [Linux]# journalctl --disk-usage
 
     # 指定日志文件占据的最大空间
-    $ sudo journalctl --vacuum-size=1G
+    [Linux]# journalctl --vacuum-size=1G
 
     # 指定日志文件保存多久
-    $ sudo journalctl --vacuum-time=1years
+    [Linux]# journalctl --vacuum-time=1years
 
 
 Systemd 命令集合
@@ -278,7 +291,7 @@ Systemd 并不是一个命令，而是一组命令，涉及到系统管理的方
 systemctl
 ++++++++++++++++++++++++++++++++
 
-systemctl 是 Systemd 的主命令，用于管理系统。
+:ref:`systemctl <cmd_systemctl>` 是 Systemd 的主命令，用于管理系统。
 
 ::
 
@@ -307,7 +320,7 @@ systemctl 是 Systemd 的主命令，用于管理系统。
 systemd-analyze
 ++++++++++++++++++++++++++++++++
 
-systemd-analyze 命令用于查看启动耗时。
+:ref:`systemd-analyze <cmd_systemd-analyze>` 命令用于查看启动耗时。
 
 ::
 
@@ -327,7 +340,7 @@ systemd-analyze 命令用于查看启动耗时。
 hostnamectl
 ++++++++++++++++++++++++++++++++
 
-hostnamectl 命令用于查看当前主机的信息。
+:ref:`hostnamectl <cmd_hostnamectl>` 命令用于查看当前主机的信息。
 
 ::
 
@@ -341,7 +354,7 @@ hostnamectl 命令用于查看当前主机的信息。
 localectl
 ++++++++++++++++++++++++++++++++
 
-localectl 命令用于查看本地化设置。
+:ref:`localectl <cmd_localectl>` 命令用于查看本地化设置。
 
 ::
 
@@ -349,14 +362,14 @@ localectl 命令用于查看本地化设置。
     [Linux]# localectl
 
     # 设置本地化参数。
-    [Linux]# sudo localectl set-locale LANG=en_GB.utf8
-    [Linux]# sudo localectl set-keymap en_GB
+    [Linux]# localectl set-locale LANG=en_GB.utf8
+    [Linux]# localectl set-keymap en_GB
 
 
 timedatectl
 ++++++++++++++++++++++++++++++++
 
-timedatectl 命令用于查看当前时区设置。
+:ref:`timedatectl <cmd_timedatectl>` 命令用于查看当前时区设置。
 
 ::
 
@@ -374,7 +387,7 @@ timedatectl 命令用于查看当前时区设置。
 loginctl
 ++++++++++++++++++++++++++++++++
 
-loginctl 命令用于查看当前登录的用户。
+:ref:`loginctl <cmd_loginctl>` 命令用于查看当前登录的用户。
 
 ::
 
