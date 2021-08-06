@@ -11,7 +11,7 @@ vsftpd（very secure FTP daemon）是一个完全免费、开源的 ftp 服务�
 /etc/vsftpd.conf                     主配置文件
 /usr/sbin/vsftpd                     主程序
 /etc/pam.d/vsftpd                     PAM 认证文件
-/etc/ftpusers                        禁止使用的用户列表
+/etc/ftpusers                        禁止使用的用户列表，每行一个用户名
 /etc/vsftpd/user_list                禁止或允许使用的用户列表。详见 userlist_deny
 /srv/ftp                             匿名用户主目录
 /etc/logrotate.d/vsftpd.log          日志文件
@@ -23,81 +23,44 @@ vsftpd（very secure FTP daemon）是一个完全免费、开源的 ftp 服务�
 
 vsftpd 的主配置文件路径为 ``/etc/vsftpd.conf`` ，在修改配置文件时，注释掉行可以关闭默认配置，修改前请备份。
 
-anonymous_enable  是否允许匿名登录 FTP 服务器，默认为 YES。
+- anonymous_enable  是否允许匿名登录服务器
+- local_enable  是否允许本地用户登录服务器
+- write_enable  是否允许本地用户具有写权限
+- local_umask  本地用户的文件掩码
+- anon_upload_enable  是否允许匿名用户上传文件，须开启 write_enable 选项
+- anon_mkdir_write_enable  是否允许匿名用户创建新文件夹
+- dirmessage_enable  是否激活目录欢迎信息功能
+- xferlog_enable  如果启用此选项，系统将会记录服务器上传和下载的日志文件，默认日志文件为 /var/log/vsftpd.log，也可以通过 xferlog_file 选项设定
+- xferlog_file=/var/log/vsftpd.log  服务器上传、下载的日志存储路径
+- xferlog_std_format  以 xferlog 格式记录日志文件
+- syslog_enable  是否将日志写入系统日志中
+- connect_from_port_20=YES  开启主动模式后是否启用默认的 20 端口监听
+- chown_uploads  是否允许改变上传文件的属主，与下面选项配合使用
+- chown_username  改变上传文件的属主，输入一个系统用户名，whoever：任何人
+- idle_session_timeout  数据传输中断间隔时间
+- data_connection_timeout  数据连接超时时间
+- nopriv_user=ftpsecure  运行 vsftpd 需要的非特权系统用户
+- use_localtime 是否使用主机的时间，默认使用 GMT 时间，比北京时间晚 8小时，建议设定为 YES
+- ascii_upload_enable  以 ASCII 方式上传数据
+- ascii_download_enable 以 ASCII 方式下载数据
+- ftpd_banner  登录 FTP 服务器时显示的欢迎信息
+- chroot_list_enable  用户是否具有访问自己目录以外文件的权限，设置为 YES 时，用户被锁定在自己的 home 目录中
+- chroot_list_file=/etc/vsftpd/chroot_list 不能访问自己目录以外的用户名，需要和 chroot_list_enable 配合使用
+- ls_recurse_enable  是否允许递归查询
+- listen  是否让 vsftpd 以独立模式运行，由 vsftpd 自己监听和处理连接请求
+- listen_ipv6  是否支持 IPV6
+- userlist_enable  是否阻止 ftpusers 文件中的用户登录服务器
+- userlist_deny  是否阻止 user_list 文件中的用户登录服务器
+- tcp_wrappers  是否使用 tcp_wrappers 作为主机访问控制方式
+- max_client  允许的最大客户端连接数，0 为不限制
+- max_per_ip  同一 IP 允许的最大客户端连接数，0 为不限制
+- local_max_rate  本地用户的最大传输速率（单位：B/s），0 为不限制
+- anon_max_rate  匿名用户的最大传输速率
 
-local_enable  是否允许本地用户登录 FTP 服务器，默认为 YES。本地用户登录后会进入用户主目录。
-
-write_enable  是否允许本地用户对 FTP 服务具有写权限，默认设置为 YES。
-
-local_umask  设置本地用户的文件掩码（默认 022）。
-
-anon_upload_enable  是否允许匿名用户上传文件，须开启 write_enable 选项。
-
-anon_mkdir_write_enable  是否允许匿名用户创建新文件夹，默认为 YES。
-
-dirmessage_enable  是否激活目录欢迎信息功能，当用户用 CMD 模式首次访问服务器上某个目录时，FTP 服务器将显示欢迎信息，默认情况下，欢迎信息是通过该目录下的 .message 文件获得的，此文件保存自定义的欢迎信息，由用户创建。
-
-xferlog_enable  默认值为 NO 如果启用此选项，系统将会维护记录服务器上传和下载情况的日志文件，默认情况该日志文件为/var/log/vsftpd.log,也可以通过下面的 xferlog_file选项对其进行设定。
-
-xferlog_file=/var/log/vsftpd.log  服务器上传、下载的日志文件存储路径。
-
-xferlog_std_format  以 xferlog 格式记录日志文件，默认为 NO
-
-syslog_enable  是否将日志写入系统日志中。将 /var/log/vsftpd.log 中的日志，输出到系统日志中
-
-connect_from_port_20=YES （ 设定 FTP 服务器将启用 FTP 数据端口的连接请求 ,ftp-data 数据传输 ，21 为连接控制端口 ）
-
-# recommended!-注意，不推荐使用root用户上传文件
-
-chown_uploads  是否允许改变上传文件的属主，与下面选项配合使用
-
-chown_username  改变上传文件的属主，输入一个系统用户名，whoever：任何人
-
-idle_session_timeout  数据传输中断间隔时间，当数据传输结束后，超时将自动断开连接
-
-data_connection_timeout  数据连接超时时间
-
-nopriv_user=ftpsecure  运行 vsftpd 需要的非特权系统用户
-
-use_localtime 是否使用主机的时间，默认使用 GMT 时间，比北京时间晚 8小时，建议设定为 YES
-
-ascii_upload_enable  以 ASCII 方式上传数据
-
-ascii_download_enable 以 ASCII 方式下载数据
-
-ftpd_banner  登录 FTP 服务器时显示的欢迎信息
-
-chroot_list_enable  用户是否具有访问自己目录以外文件的权限，设置为 YES 时 ，用户被锁定在自己的 home 目录中
-
-chroot_list_file=/etc/vsftpd/chroot_list 不能访问自己目录以外的用户名，需要和 chroot_list_enable 配合使用
-
-ls_recurse_enable  是否允许递归查询
-
-listen  是否让 vsftpd 以独立模式运行，由 vsftpd 自己监听和处理连接请求
-
-listen_ipv6  是否支持 IPV6
-
-userlist_enable  默认为 NO，此时 ftpusers 文件中的用户禁止登录 FTP 服务器；若设为 YES，则 user_list 文件中的用户允许登录服务器，而如果同时设置了 userlist_deny=YES，则 user_list 文件中的用户将不允许登录服务器，直接被服务器拒绝
-
-userlist_deny  默认为 YES，设置是否阻止 user_list 文件中的用户登录服务器
-
-tcp_wrappers=YES （ 表明服务器使用 tcp_wrappers 作为主机访问控制方式，tcp_wrappers可以实现linux系统中网络服务的基于主机地址的访问控制，在/etc目录中的hosts.allow和hosts.deny两个文件用于设置tcp_wrappers的访问控制，前者设置允许访问记录，后者设置拒绝访问记录。例如想限制某些主机对FTP服务器192.168.57.2的匿名访问，编缉/etc/hosts.allow 文件，如在下面增加两行命令：vsftpd:192.168.57.1ENY 和vsftpd:192.168.57.9ENY 表明限制IP为192.168.57.1/192.168.57.9主机访问IP为192.168.57.2的FTP服务器，此时FTP服务器虽可以PING通，但无法连接）
-
-在FTP服务器的管理中无论对本地用户还是匿名用户，对于FTP服务器资源的使用都需要进行控控制，避免由于负担过大造成FTP服务器运行异常， 可以添加以下配置项对FTP客户机使用FTP服务器资源进行控制：
-
-max_client 服务器允许的最大客户端连接数，0 为不限制
-
-max_per_ip 同一 IP 地址允许的最大客户端连接数，0 为不限制
-
-local_max_rate  本地用户的最大传输速率，单位为 B/s，0 为不限制
-
-anon_max_rate  匿名用户的最大传输速率
-
-vsftpd.user_list 文件需要与vsftpd.conf文件中的配置项结合来实现对于vsftpd.user_list文件中指定用户账号的访问控制：
 
 .. hint::
 
-    修改完配置文件，需要重启 FTP 服务才能生效。使用 ``systemclt restart vsftpd`` 命令重启服务。
+    修改完配置文件，需要使用 ``systemclt restart vsftpd`` 命令重启服务才能生效。
 
 
 应用实例
@@ -131,18 +94,16 @@ vsftpd.user_list 文件需要与vsftpd.conf文件中的配置项结合来实现�
    # 匿名用户访问路径
    anon_root=/var/www/html/web
    # 指定端口号
-   listen_port=12345
+   listen_port=5001
    # 使用主机时间
    use_localtime=YES
    pam_service_name=vsftpd
 
 .. attention ::
 
-    由于 vsftpd 增强了安全检查，如果用户被限定在其主目录下，则用户的主目录不能具有写权限，如果还有写权限，就会报该错误。
+    由于 vsftpd 增强了安全检查，如果用户被限定在其主目录下，则用户的主目录不能具有写权限，如果还有写权限，就会报该错误：
 
-    ::
-        500 OOPS: vsftpd: refusing to run with writable root inside chroot()
-
+    500 OOPS: vsftpd: refusing to run with writable root inside chroot()
 
     要修复这个错误，可以删除用户的写权限 ``chmod a-w /var/www/html/web`` 。
     或者在 vsftpd 的配置文件中增加下列两项：
@@ -193,13 +154,11 @@ userlist_deny 和 userlist_enable 选项限制用户登录服务器，可以有�
 3. 修改默认端口
 ++++++++++++++++++++++++++++++++++++
 
-FTP 服务器默认端口号是 21，出于安全目的，有时需修改默认端口号。自定义端口号范围 5001 至 65535。
+FTP 服务器默认端口号是 21，出于安全目的，有时需修改默认端口号。自定义端口号范围 5001 至 65535。参见 :doc:`计算机端口详解 <../Chapter03/00_port>` 。 
 
 ::
 
    listen_port=5001
-
-推荐阅读：:doc:`../Chapter03/00_port`
 
 
 FTP 数字代码的意义
