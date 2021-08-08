@@ -60,8 +60,8 @@ git-ftp 已经进入了大部分的软件仓库，可以直接通过系统的安
 基本命令
 ====================================
 
-- git-ftp init 新建服务器仓库。用于 FTP 服务器没有文件，上传所有本地提交到服务器仓库，并创建 ``.git-ftp.log`` 文件。
-- git-ftp catchup 初始服务器仓库。用于 FTP 服务器有文件，只在服务器上创建 ``.git-ftp.log`` 文件。
-- git-ftp download 下载服务器仓库中的文件。在服务器上需要有 ``.git-ftp.log`` 文件，并且本地仓库为空。
-- git-ftp pull 拉取服务器仓库的提交。
-- git-ftp push 推送本地提交到服务器仓库。
+- **git-ftp init** 新建服务器仓库。用于 FTP 服务器没有文件，上传所有本地提交到服务器仓库，并创建 ``.git-ftp.log`` 文件。
+- **git-ftp catchup** 初始服务器仓库。用于 FTP 服务器有文件，只在服务器上创建 ``.git-ftp.log`` 文件。
+- **git-ftp download** 下载服务器仓库中的文件。在服务器上需要有 ``.git-ftp.log`` 文件，并且本地仓库为空。
+- **git-ftp pull** 拉取服务器仓库的提交。
+- **git-ftp push** 推送本地提交到服务器仓库。

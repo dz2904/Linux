@@ -15,7 +15,22 @@ OpenSSH 是这种协议的开源实现或实体，OpenSSH 分为客户端 openss
 配置文件
 ************************************
 
-OpenSSH 配置文件路径是： ``/etc/ssh/sshd_config`` ：
+OpenSSH 的配置文件在 ``/etc/ssh`` 目录 ，此外还有一些安装时生成的密钥。
+
+- /etc/ssh/sshd_config：主配置文件
+- /etc/ssh/ssh_host_ecdsa_key：ECDSA 私钥。
+- /etc/ssh/ssh_host_ecdsa_key.pub：ECDSA 公钥。
+- /etc/ssh/ssh_host_key：用于 SSH 1 协议版本的 RSA 私钥。
+- /etc/ssh/ssh_host_key.pub：用于 SSH 1 协议版本的 RSA 公钥。
+- /etc/ssh/ssh_host_rsa_key：用于 SSH 2 协议版本的 RSA 私钥。
+- /etc/ssh/ssh_host_rsa_key.pub：用于 SSH 2 协议版本的 RSA 公钥。
+- /etc/pam.d/sshd：PAM 配置文件。
+
+.. attention::
+
+    如果重装 sshd，密钥会全部重新生成，导致客户端重新连接服务器时跳出警告，拒绝连接。为了避免这种情况，可以在重装 sshd 时，先备份 ``/etc/ssh`` 目录，重装后再恢复这个目录。
+
+主配置文件：
 
 ::
 
@@ -115,4 +130,4 @@ root 登录
     PermitRootLogin yes
 
     # 重启 OpenSSH 服务
-    systemctl restart sshd
+    [Linux]# systemctl restart sshd

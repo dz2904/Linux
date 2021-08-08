@@ -27,6 +27,9 @@ vsftpd 的主配置文件路径为 ``/etc/vsftpd.conf`` ，在修改配置文件
 - local_enable  是否允许本地用户登录服务器
 - write_enable  是否允许本地用户具有写权限
 - local_umask  本地用户的文件掩码
+- local_root  系统用户登录路径
+- anon_root  匿名用户登录路径
+- chroot_local_user  是否锁定用户登录目录为其根目录
 - anon_upload_enable  是否允许匿名用户上传文件，须开启 write_enable 选项
 - anon_mkdir_write_enable  是否允许匿名用户创建新文件夹
 - dirmessage_enable  是否激活目录欢迎信息功能
