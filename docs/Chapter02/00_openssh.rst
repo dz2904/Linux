@@ -119,8 +119,57 @@ OpenSSH 的配置文件在 ``/etc/ssh`` 目录 ，此外还有一些安装时生
     UsePAM yes
 
 
-root 登录
+应用实例
 ************************************
+
+密钥登录
+====================================
+
+SSH 默认采用密码登录，这种方法有很多缺点，简单的密码不安全，复杂的密码不容易记忆，每次手动输入也很麻烦。密钥登录是比密码登录更好的解决方案。
+
+密钥是一个非常大的数字，通过加密算法得到。SSH 一般使用非对称加密，分为公钥（public key）和私钥（private key）。其中，私钥必须私密保存，不能泄漏；公钥则是公开的，可以对外发送。它们的关系是，公钥和私钥是一一对应的，每一个私钥都有且仅有一个对应的公钥，反之亦然。
+
+SSH 密钥登录分为三步：
+
+1. 客户端通过 :ref:`ssh-keygen 命令 <cmd_ssh-keygen>` 生成公钥和私钥。
+
+::
+
+    # 会询问一系列问题，一路回车即可
+    [Linux]$ ssh-keygen -t rsa -b 2048 -C "your_email@domain.com"
+
+2. 将客户端的公钥上传到远程服务器。
+
+将用户公钥文件 ``~/.ssh/id_rsa.pub`` 保存到服务器中，密钥必须保存在服务器用户主目录的 ``~/.ssh/authorized_keys`` 文件中。每个公钥占据一行，如果该文件不存在，可以手动创建。格式为：
+
+::
+
+    [Linux]$ cat ~/.ssh/authorized_keys
+    ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAvpB4lUbAaEbh9u...
+    ssh-rsa DydZAKMcDvBJqRhUotQUwqV6HJxqoqPDlPGUUyo8RP...
+   
+.. attention::
+
+    authorized_keys 文件的权限为 644，即只有文件所有者才能写。如果权限设置不正确，SSH 服务器可能会拒绝读取该文件。
+
+也可以使用命令自动将公钥上传到远程服务器：
+
+::
+
+    [Linux]$ ssh-copy-id -i ~/.ssh/id_rsa.pub  user@host
+
+
+3. 客户端使用密钥登录服务器。
+
+::
+
+    [Linux]$ ssh user@host
+
+为了安全性，启用密钥登录之后，最好关闭服务器的密码登录。在主配置文件中加入 ``PasswordAuthentication no`` 。
+
+
+root 登录
+====================================
 
 一般情况下默认的配置已经很好，不需要自主配置。但有时需要增加 root 登录的权限，可以直接在文件末尾添加配置：
 
