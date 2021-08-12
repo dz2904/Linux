@@ -15,9 +15,9 @@ yum 安装，CentOS 5.3 yum 源自带了 vnc 与 vnc-server。
 
 ::
 
-    [root@localhost ~]# yum install vnc
+    [Linux]# yum install vnc
 
-    [root@localhost ~]# yum install vnc-server
+    [Linux]# yum install vnc-server
 
 
 配置 VNC Server
@@ -35,19 +35,13 @@ VNC Server 的配置文件为 /etc/sysconfig/vncservers，在文件末尾添加�
 
 关于参数配置说明：
 
-1. -geometry 表示桌面分辨率，默认为 1024x768
-
-2. -nohttpd  表示不监听 HTTP 端口（58xx）
-
-3. -nolisten tcp 表示不监听 TCP 端口（60xx）
-
-4. -localhost 只允许从本机访问
-
-5. AlwaysShared 默认只允许一个 VNCVIEWER 连接，此参数表示同一个显示端口允许多用户同时登录
-
-6. -depth  表示色深，参数有 8,16,24,32.
-
-7. SecurityTypes None 登录不需要密码认证 VncAuth 默认值,要密码认证。
+- \-geometry 表示桌面分辨率，默认为 1024x768
+- \-nohttpd  表示不监听 HTTP 端口（58xx）
+- \-nolisten tcp 表示不监听 TCP 端口（60xx）
+- \-localhost 只允许从本机访问
+- AlwaysShared 默认只允许一个 VNCVIEWER 连接，此参数表示同一个显示端口允许多用户同时登录
+- \-depth  表示色深，参数有 8,16,24,32.
+- SecurityTypes None 登录不需要密码认证 VncAuth 默认值,要密码认证。
 
 VNC 使用的起始端口是 5900 和 5800，桌面号是 2 时，VNC Viewer 访问的端口是 5902，WEB 方式（java）访问的端口号是 5802。
 
@@ -63,23 +57,23 @@ root 用户的配置也是这个文件，若要配置需要在文件末尾同样
 
 ::
 
-    [root@localhost ~]# iptables -L
+    [Linux]# iptables -L
 
     或
-    [root@localhost ~]# service iptables stop
+    [Linux]# service iptables stop
 
 但一般不建议这样做，我们需要在防火墙里打开某些端口：
 
 ::
 
-    [root@localhost ~]# iptables -I INPUT -p tcp --dport 5901:5902 -j ACCEPT
-    [root@localhost ~]# iptables -I INPUT -p udp --dport 5901:5902 -j ACCEPT
+    [Linux]# iptables -I INPUT -p tcp --dport 5901:5902 -j ACCEPT
+    [Linux]# iptables -I INPUT -p udp --dport 5901:5902 -j ACCEPT
 
 同样，上述操作在计算机重启之后也会失效，以下操作将配置保存到配置文件，使其永久生效：
 
 ::
 
-    [root@localhost ~]# service iptables save
+    [Linux]# service iptables save
 
 
 启动 VNC Server
@@ -89,11 +83,11 @@ root 用户的配置也是这个文件，若要配置需要在文件末尾同样
 
 ::
 
-    [root@localhost ~]# su hubery
-    [hubery@localhost root]$ vncpasswd
+    [Linux]# su hubery
+    [Linux]$ vncpasswd
     Password:
     Verify:
-    [hubery@localhost root]$ vncserver :2
+    [Linux]$ vncserver :2
     xauth:  creating new authority file /home/hubery/.Xauthority
 
     New 'localhost:2 (hubery)' desktop is localhost:2
@@ -102,13 +96,13 @@ root 用户的配置也是这个文件，若要配置需要在文件末尾同样
     Starting applications specified in /home/hubery/.vnc/xstartup
     Log file is /home/hubery/.vnc/localhost:2.log
 
-    [hubery@localhost root]$
+    [Linux]$
 
 关闭某个 vncserver：
 
 ::
 
-    [hubery@localhost root]$ vncserver -kill :2
+    [Linux]$ vncserver -kill :2
 
 
 VNC Viewer 访问
@@ -146,11 +140,11 @@ VNC Viewer 访问
 
 ::
 
-    [root@localhost .vnc]# service vncserver restart
+    [Linux]# service vncserver restart
 
     或
 
-    [root@localhost .vnc]# su hubery
+    [Linux]# su hubery
     [hubery@localhost .vnc]$ vncserver -kill :2
     Killing Xvnc process ID 20353
     [hubery@localhost .vnc]$ vncserver :2
