@@ -13,15 +13,18 @@ alias 命令用于查看和创建命令别名，别名允许用户只输入一�
 
 ::
 
-    alias [name] = [command ...]
+    alias [name]=[command ...]
  
-
 举个例子，为常用的 clear（清除屏幕）命令创建一个别名 c：
 
 ::
 
-    [Linux]$ alias c = 'clear'
+    [Linux]$ alias c='clear'
 
+
+.. attention::
+
+    在指定别名时，等号（ ``=`` ）两边不可以有空格。
 
 
 让别名永久生效
@@ -35,7 +38,7 @@ alias 命令用于查看和创建命令别名，别名允许用户只输入一�
     [Linux]$ vi ~/.bashrc
 
     # 添加下面内容让别名永久有效
-    alias c = 'clear'
+    alias c='clear'
 
 
 系统级（对所有用户生效）的别名可以放在 ``/etc/bashrc`` 文件中。
@@ -64,24 +67,24 @@ alias 命令用于查看和创建命令别名，别名允许用户只输入一�
 ::
 
     # 使用颜色输出 ls 的内容，许多发行版默认设置
-    alias ls = 'ls --color=auto'
+    alias ls='ls --color=auto'
 
     # 使用颜色输出 grep 查找到的内容
-    alias grep = 'grep --color=auto'
-    alias egrep = 'egrep --color=auto'
-    alias fgrep = 'fgrep --color=auto'
+    alias grep='grep --color=auto'
+    alias egrep='egrep --color=auto'
+    alias fgrep='fgrep --color=auto'
 
     # 对其输出 mount 的内容
-    alias mount = 'mount | column -t'
+    alias mount='mount | column -t'
 
     # 默认添加 ping 的次数
-    alias ping = 'ping -c 5'
+    alias ping='ping -c 5'
 
     # 删除文件时需要确认
-    alias rm = 'rm -i'
+    alias rm='rm -i'
 
     # 更新 Debian 系统中的软件
-    alias update = 'sudo apt-get update && sudo apt-get upgrade'
+    alias update='sudo apt-get update && sudo apt-get upgrade'
 
     # wget 默认断点续传
-    alias wget = 'wget -c'
+    alias wget='wget -c'

@@ -1,4 +1,4 @@
-重新认识 Shell
+认识 Shell
 ####################################
 
 从刚刚开始使用 Linux 时，就会有很多 Shell 的话题，那么 Shell 到底是什么呢？
@@ -110,7 +110,7 @@ noclobber                是否允许重定向的输出替换文件
 home 目录， ``&`` 在后台运行程序， ``\\`` 转移字符等。
 
 
-推荐阅读： :doc:`metacharacter`
+推荐阅读： :doc:`00_metacharacter`
 
 
 历史列表
@@ -155,19 +155,19 @@ Shell 中可以使用 <Tab> 键自动补全命令、路径及文件名、环境�
 ::
 
     # 命令补全，输入以下字符然后按 <Tab> 键，将自动补全 whoami
-    [Linux] $ whoa
+    [Linux]$ whoa
 
     # 变量补全，必须以 $ 符号开头，输入以下字符然后按<Tab>键
-    [Linux] $ echo $H
+    [Linux]$ echo $H
     $HISTCMD       $HISTFILE      $HISTSIZE      $HOSTNAME      
     $HISTCONTROL   $HISTFILESIZE  $HOME          $HOSTTYPE
 
     # 用户名补全，必须以 ~ 符号开头，输入以下字符然后按 <Tab> 键
-    [Linux] $ echo ~gle
+    [Linux]$ echo ~gle
 
     # 主机名补全，必须以 @ 符号开头，输入以下字符然后按 <Tab> 键
     # 主机名自动补全只会补全包含在 /etc/hosts 文件中的主机名
-    [Linux] $ echo @gle
+    [Linux]$ echo @gle
 
 
 .. note::
@@ -184,10 +184,10 @@ Shell 中可以使用 <Tab> 键自动补全命令、路径及文件名、环境�
 ::
 
     # 定义别名
-    [Linux] $ alias info='date; who'
+    [Linux]$ alias info='date; who'
 
     # 查看系统中的别名
-    [Linux] $ alias 
+    [Linux]$ alias 
     alias info='data; who'
     alias la='ls -A'
     alias ll='ls -alF'
@@ -195,7 +195,7 @@ Shell 中可以使用 <Tab> 键自动补全命令、路径及文件名、环境�
     alias vi='vim
 
     # 删除别名
-    [Linux] $ unalias info
+    [Linux]$ unalias info
 
 
 
@@ -218,30 +218,30 @@ Bash 常用的内置命令
 
 - :ref:`alias <cmd_alias>` ：显示和创建已有命令的别名。
 - :ref:`bg <cmd_bg>` ：把作业放到后台。
-- :ref:`cd [arg] <cmd_cd>` ：改变目录，如果不带参数，则回到主目录，带参数则切换到参数所指的目录。
+- :ref:`cd <cmd_cd>` ：改变目录，如果不带参数，则回到主目录，带参数则切换到参数所指的目录。
 - :ref:`disown <cmd_disown>` ：从作业表中删除一个活动作业。
-- :ref:`echo [args] <cmd_echo>` ：显示 args 并换行。
-- :ref:`eval [args] <cmd_eval>` ：把 args 读入 Shell，并执行产生的命令。
-- :ref:`exec command <cmd_exec>` ：运行命令，替换掉当前 Shell。
-- :ref:`exit [n] <cmd_exit>` ：以状态 n 退出 Shell。
-- :ref:`export [var] <cmd_export>` ：使变量可被子 Shell 识别。
+- :ref:`echo <cmd_echo>` ：显示变量或字符。
+- :ref:`eval <cmd_eval>` ：把命令读入 Shell，并执行。
+- :ref:`exec <cmd_exec>` ：运行命令，替换掉当前 Shell。
+- :ref:`exit <cmd_exit>` ：以指定状态退出 Shell。
+- :ref:`export <cmd_export>` ：使变量可被子 Shell 识别。
 - :ref:`fc <cmd_fc>` ：历史的修改命令，用于编辑历史命令。
 - :ref:`fg <cmd_fg>` ：把后台作业放到前台。
 - :ref:`getopts <cmd_getopts>` ：解析并处理命令行选项。
-- :ref:`help [command] <cmd_help>` ：显示关于内置命令的有用信息。如果指定了一个命令，则将显示该命令的详细信息。
+- :ref:`help <cmd_help>` ：显示关于内置命令的有用信息。如果指定了一个命令，则将显示该命令的详细信息。
 - :ref:`history <cmd_history>` ：显示带行号的命令历史列表。
 - :ref:`jobs <cmd_jobs>` ：显示放到后台的作业。
-- :ref:`kill [-signal process] <cmd_kill>` ：向由 PID 号或作业号指定的进程发送信号。
+- :ref:`kill <cmd_kill>` ：向指定的进程发送关闭信号。
 - :ref:`logout <cmd_logout>` ：退出登录 Shell。
 - :ref:`pwd <cmd_pwd>` ：打印出当前的工作目录。
-- :ref:`read [var] <cmd_read>` ：从标准输入读取一行，保存到变量 var 中。
+- :ref:`read <cmd_read>` ：从标准输入读取。
 - :ref:`set <cmd_set>` ：设置选项和位置参量。
-- :ref:`stop pid <cmd_pid>` ：暂停第 pid 号进程的运行。
+- :ref:`stop <cmd_pid>` ：暂停进程的运行。
 - :ref:`suspend <cmd_suspend>` ：终止当前 Shell 的运行（对登录 Shell 无效）。
-- :ref:`times <cmd_times>` ：显示由当前 Shell 启动的进程运行所累计用户时间和系统时间。
-- :ref:`type [command] <cmd_type>` ：显示命令的类型，例如：pwd 是 Shell 的一个内置命令。
+- :ref:`times <cmd_times>` ：显示由当前 Shell 启动的进程所累计的用户时间和系统时间。
+- :ref:`type <cmd_type>` ：显示命令的类型。
 - :ref:`unalias <cmd_unalias>` ：取消所有的命令别名设置。
-- :ref:`wait [pid#n] <cmd_wait>` ：等待 pid 号为 n 的后台进程结束，并报告它的结束状态。
+- :ref:`wait <cmd_wait>` ：等待后台进程结束，并显示它的结束状态。
 
 .. attention::
 

@@ -7,7 +7,7 @@ Bash 使用了一个名为 Readline 的库（供不同的应用程序共享使�
 
 .. highlight:: none
 
-.. hint ::
+.. attention::
 
     Shell 中有两种命令行编辑的模式，即 vi 模式和 Emacs 模式（Bash 默认使用的是 Emacs 模式）。在两种模式中使用不同的快捷键操纵在命令行中键入的内容，包括使用历史列表和自动补全的功能。
 

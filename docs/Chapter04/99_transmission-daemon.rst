@@ -56,8 +56,9 @@ Transmission 软件包含多个套件，分别是：
 - blocklists/：存储被屏蔽的 peer 地址。
 - dht.dat：存储 DHT 节点信息。
 
-.. hint:: 主配置文件各项说明
+:: 
 
+    # 主配置文件各项说明
     [Linux]# vim /etc/transmission-daemon/settings.json
 
     {
@@ -108,11 +109,13 @@ Transmission 软件包含多个套件，分别是：
     }
 
 
-在修改配置文件之前需要停止守护进程，否则编辑的参数将无法正确保存。
+.. hint::
 
-::
+    在修改配置文件之前需要停止守护进程，否则编辑的参数将无法正确保存。
 
-    [Linux]# systemctl stop transmission-daemon.service
+    ::
+
+        [Linux]# systemctl stop transmission-daemon.service
 
 
 最小修改项：
@@ -131,13 +134,6 @@ Transmission 软件包含多个套件，分别是：
 
     根据官方文档的说明，需要将访问者 ip 加入白名单，ip 支持通配符 ``*``
     如："rpc-whitelist": "127.0.0.1, 192.168.0.*"
-
-
-修改完成之后需要启动守护进程。
-
-::
-
-    [Linux]# systemctl start transmission-daemon.service
 
 
 通过 web 访问服务

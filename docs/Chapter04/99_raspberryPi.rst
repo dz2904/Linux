@@ -5,14 +5,12 @@
 
 - 1GHz 单核 CPU
 - 512MB 内存
+- 802.11n WiFi
+- 蓝牙 4.1（BLE）
 - mini-HDMI 接口
 - Micro-USB OTG 端口
 - Micro-USB 电源接口
 - 40 针 GPIO 扩展口
-- 复合视频和重置接头
-- CSI 摄像机连接
-- 802.11n WiFi
-- 蓝牙 4.1（BLE）
 
 
 安装系统镜像
@@ -52,10 +50,23 @@
     update_config=1
     country=CN
     network={
-        ssid="WiFi名称1"
-        psk="WiFi密码1"
+        ssid="WiFi名称"
+        psk="WiFi密码"
         priority=5
     }
+    network={
+        ssid="WiFi"
+        psk="WiFi"
+        priority=1
+    }
+
+
+可以配置多个无线网络连接，各部分含义如下：
+
+- ssid：WIFI名称
+- psk：WIFI密码
+- priority：连接优先级，数字越大优先级越高
+- scan_ssid：连接隐藏 WiFi 时需要指定该值为 1
 
 
 当系统开机后， ``/boot`` 分区中的配置文件会消失，再次配置请参阅 :doc:`wpa_supplicant 连接 wifi <../Chapter02/32_wpa.supplicant>` 
@@ -114,6 +125,35 @@
 网址末尾的 raspbian 重复两次是必须的。因为 Raspbian 的仓库中除了 APT 软件源还包含其他代码。APT 软件源不在仓库的根目录，而在 ``raspbian/`` 子目录下。
 
 编辑镜像站后，请使用 ``sudo apt-get update`` 命令，更新软件源列表，同时检查您的编辑是否正确。
+
+
+其它源
+--------------------------------
+
+注意以下列出的都是 ``buster`` 版本，粘贴时注意区分版本。
+
+::
+
+    # 中国科学技术大学
+    # `/etc/apt/sources.list` 文件
+    deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi
+    deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ buster main contribnon-free rpi
+    # `/etc/apt/sources.list.d/raspi.list` 文件
+    deb http://mirrors.ustc.edu.cn/archive.raspberrypi.org/debian/ buster main ui
+
+    # 阿里云
+    # `/etc/apt/sources.list` 文件
+    deb http://mirrors.aliyun.com/raspbian/raspbian/ buster main contrib non-free rpi
+    deb-src http://mirrors.aliyun.com/raspbian/raspbian/ buster main contrib non-free rpi
+    # `/etc/apt/sources.list.d/raspi.list` 文件
+    deb http://mirrors.aliyun.com/archive.raspberrypi.org/debian/ buster main ui
+
+    # 华中科技大学
+    # `/etc/apt/sources.list` 文件
+    deb http://mirrors.hustunique.com/raspbian/raspbian/ buster main contrib non-free rpi
+    deb-src http://mirrors.hustunique.com/raspbian/raspbian/ buster main contrib non-free rpi
+    # `/etc/apt/sources.list.d/raspi.list` 文件
+    deb http://mirrors.hustunique.com/archive.raspberrypi.org/debian/ buster main ui
 
 
 禁用自动休眠
