@@ -19,7 +19,12 @@ alias 命令用于查看和创建命令别名，别名允许用户只输入一�
 
 ::
 
+    # 设置别名
     [Linux]$ alias c='clear'
+
+    #查看别名
+    [Linux]$ alias c
+    alias c='clear'
 
 
 .. attention::
@@ -43,22 +48,36 @@ alias 命令用于查看和创建命令别名，别名允许用户只输入一�
 
 系统级（对所有用户生效）的别名可以放在 ``/etc/bashrc`` 文件中。
 
-.. hint:: 临时性地禁用命令别名
 
-    ::
+禁用别名
+************************************
 
-        # 在命令前边加入转义符：
-        [Linux]$ \ls
+unalias 命令用于删除当前终端的别名，写入配置文件的别名只在当前终端中被删除。它只有一个 ``-a`` 选项用于删除所有别名。
+
+::
+
+    # 删除 c 别名
+    [Linux]$ unalias c
+
+    # 删除所有别名
+    [Linux]$ unalias -a
+
+除了使用 unalias 删除别名之外，还有一些临时性地禁用别名的方法：
+
+::
+
+    # 在命令前边加入转义符：
+    [Linux]$ \ls
         
-        # 使用命令的绝对路径：
-        [Linux]$ /usr/bin/ls
+    # 使用命令的绝对路径：
+    [Linux]$ /usr/bin/ls
         
-        # 或者对命令加上引用：
-        [Linux]$ "ls"
-        [Linux]$ 'ls'
+    # 或者对命令加上引用：
+    [Linux]$ "ls"
+    [Linux]$ 'ls'
         
-        # 使用 command 命令
-        [Linux]$ command ls
+    # 使用 command 命令
+    [Linux]$ command ls
 
 
 系统中常用的别名
