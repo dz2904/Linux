@@ -7,7 +7,7 @@ kill 命令大多时候用于终止（删除）执行中的进程。
 
 kill 默认发送的信息为 SIGTERM(15)，可终止指定程序。若仍无法终止该程序，可使用 SIGKILL(9) 信息尝试强制终止程序。
 
-程序的进程号可使用 :ref:`ps 命令 <cmd_ps>` 或 :ref:`jobs -l 命令 <cmd_jobs>` 查看，还可以使用 :ref:`top 命令 <cmd_ps>` 。
+程序的进程号可使用 :ref:`ps 命令 <cmd_ps>` 或 :ref:`jobs -l 命令 <cmd_jobs>` 查看，还可以使用 :ref:`top 命令 <cmd_top>` 。
 
 
 命令格式：
