@@ -30,7 +30,18 @@ OpenSSH 的配置文件在 ``/etc/ssh`` 目录 ，此外还有一些安装时生
 
     如果重装 sshd，密钥会全部重新生成，导致客户端重新连接服务器时跳出警告，拒绝连接。为了避免这种情况，可以在重装 sshd 时，先备份 ``/etc/ssh`` 目录，重装后再恢复这个目录。
 
-    用户使用 ssh-keygen 生成的密钥文件存放在 ``~/.ssh/`` 目录下。
+    用户使用 ssh-keygen 生成的密钥文件存放在 ``~/.ssh/`` 目录下，文件权限如下：
+
+    ::
+
+        [Linux]$ ls -l ~/.ssh
+        total 12
+        -rw------- 1 glenn glenn 1823 Nov 13 10:24 id_rsa
+        -rw-r--r-- 1 glenn glenn  400 Nov 13 10:24 id_rsa.pub
+        -rw-r--r-- 1 glenn glenn 1106 Nov 13 21:09 known_hosts
+
+        [Linux]$ ls -la ~ | grep ssh
+        drwx------  2 glenn glenn  4096 Nov 13 10:28 .ssh
 
 
 主配置文件：
