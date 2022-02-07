@@ -49,17 +49,17 @@ file 命令用来识别文件类型，也可用来识别文件的编码格式。
 
 ::
 
-    [Linux]$  file file.rst 
+    [Linux]$  file file.rst
     file.rst: UTF-8 Unicode text, with very long lines
 
     # 显示 MIME 类别
-    [Linux]$  file -i file.rst 
+    [Linux]$  file -i file.rst
     file.rst: text/plain; charset=utf-8
-    
+
     # 识别目录文件
     [Linux]$  file docs/
     docs/: directory
 
     # 识别压缩文件
-    [Linux]$  file abc.zip 
+    [Linux]$  file abc.zip
     abc.zip: Zip archive data, at least v1.0 to extract
